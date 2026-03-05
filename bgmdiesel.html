@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BGM Diesel – Repuestos para Camiones en Rosario, Santa Fe</title>
+  <meta name="description" content="BGM Diesel: líder en venta de repuestos para camiones en Rosario, Santa Fe. Mercedes Benz, Scania, Volvo, Iveco, Ford Cargo. Envíos a todo Argentina. ☎ (0341) 792-6696" />
+  <meta name="keywords" content="repuestos camiones Rosario, repuestos diesel Rosario, repuestos Mercedes Benz camión, repuestos Scania Rosario, repuestos Volvo camión, repuestos Iveco Rosario, venta repuestos camiones Santa Fe, BGM Diesel" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BGM Diesel – Repuestos para Camiones en Rosario" />
+  <meta property="og:description" content="Más de 20 años vendiendo repuestos para camiones en Rosario. Mercedes Benz, Scania, Volvo, Iveco, Ford Cargo. Envíos a todo el país." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.bgmdiesel.com" />
+  <meta property="og:locale" content="es_AR" />
+
+  <!-- Schema.org structured data – clave para aparecer en IAs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoPartsStore",
+    "name": "BGM Diesel",
+    "description": "Empresa especializada en la venta de repuestos para camiones en Rosario, Santa Fe, Argentina. Más de 20 años de trayectoria en el mercado. Atendemos marcas como Mercedes Benz, Scania, Volvo, Iveco y Ford Cargo.",
+    "url": "https://www.bgmdiesel.com",
+    "telephone": ["+543417926696", "+543415317707"],
+    "email": "ventas@bgmdiesel.com.ar",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bv. 27 de Febrero 3447",
+      "addressLocality": "Rosario",
+      "addressRegion": "Santa Fe",
+      "postalCode": "2000",
+      "addressCountry": "AR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -32.9468,
+      "longitude": -60.6393
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "12:00"
+      }
+    ],
+    "hasMap": "https://maps.google.com/?q=Bv.+27+de+Febrero+3447,+Rosario",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "priceRange": "$$",
+    "sameAs": []
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --negro: #0a0a0a;
+      --acero: #1a1f2e;
+      --acero-claro: #252d3d;
+      --naranja: #f05a1a;
+      --naranja-claro: #ff7a3d;
+      --gris: #8a9ab5;
+      --gris-claro: #c8d4e8;
+      --blanco: #f0f4ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(240,90,26,0.2);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.6rem; letter-spacing: 0.04em;
+      color: var(--blanco);
+    }
+    .nav-logo span { color: var(--naranja); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--gris-claro); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--naranja); }
+    .nav-cta {
+      background: var(--naranja); color: #fff;
+      padding: 0.5rem 1.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--naranja-claro); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,31,46,0.85) 100%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 60px,
+          rgba(240,90,26,0.04) 60px,
+          rgba(240,90,26,0.04) 61px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(240,90,26,0.04) 60px,
+          rgba(240,90,26,0.04) 61px
+        );
+      display: flex; align-items: center;
+      padding: 100px 5vw 60px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-accent {
+      position: absolute; right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(240,90,26,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 700px; animation: fadeUp 0.8s ease both; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(240,90,26,0.15);
+      border: 1px solid rgba(240,90,26,0.4);
+      color: var(--naranja-claro);
+      padding: 0.3rem 0.9rem; border-radius: 3px;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800; line-height: 0.95;
+      text-transform: uppercase; letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { color: var(--naranja); font-style: normal; }
+    .hero-sub {
+      font-size: 1.15rem; font-weight: 300; color: var(--gris-claro);
+      line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--naranja); color: #fff;
+      padding: 0.9rem 2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--naranja-claro); transform: translateY(-2px); }
+    .btn-secondary {
+      border: 1px solid rgba(200,212,232,0.3); color: var(--gris-claro);
+      padding: 0.9rem 2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--naranja); color: var(--naranja); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(200,212,232,0.1);
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem; font-weight: 800; color: var(--naranja);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: var(--gris);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem;
+    }
+
+    /* ── STRIP ── */
+    .marquee-strip {
+      background: var(--naranja);
+      padding: 0.7rem 0; overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #fff;
+    }
+    .marquee-inner span { margin: 0 2rem; opacity: 0.6; }
+
+    /* ── SECCIONES COMUNES ── */
+    section { padding: 90px 5vw; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--naranja); margin-bottom: 0.8rem; font-weight: 600;
+    }
+    h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800; text-transform: uppercase;
+      line-height: 1.05; margin-bottom: 1rem;
+    }
+    h2 em { color: var(--naranja); font-style: normal; }
+    .section-intro {
+      font-size: 1.05rem; color: var(--gris-claro); max-width: 580px;
+      line-height: 1.7; margin-bottom: 3rem;
+    }
+
+    /* ── QUIÉNES SOMOS ── */
+    #empresa { background: var(--acero); }
+    .empresa-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .empresa-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .feature-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .feature-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(240,90,26,0.12);
+      border: 1px solid rgba(240,90,26,0.25);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .feature-text h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.2rem;
+    }
+    .feature-text p { font-size: 0.9rem; color: var(--gris); line-height: 1.5; }
+
+    .empresa-visual {
+      background: var(--acero-claro);
+      border: 1px solid rgba(240,90,26,0.15);
+      border-radius: 8px; padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .visual-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(200,212,232,0.08);
+    }
+    .visual-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .visual-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.8rem; font-weight: 800; color: var(--naranja);
+      min-width: 80px; line-height: 1;
+    }
+    .visual-desc { font-size: 0.9rem; color: var(--gris-claro); line-height: 1.5; }
+
+    /* ── MARCAS ── */
+    #marcas { background: var(--negro); }
+    .marcas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem; margin-top: 3rem;
+    }
+    .marca-card {
+      background: var(--acero);
+      border: 1px solid rgba(200,212,232,0.08);
+      border-radius: 6px; padding: 1.5rem 1rem;
+      text-align: center; transition: all 0.25s;
+      cursor: default;
+    }
+    .marca-card:hover {
+      border-color: var(--naranja);
+      background: rgba(240,90,26,0.06);
+      transform: translateY(-3px);
+    }
+    .marca-card .marca-nombre {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--blanco);
+    }
+    .marca-card .marca-tipo {
+      font-size: 0.75rem; color: var(--gris);
+      margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: var(--acero); }
+    .productos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .producto-card {
+      background: var(--acero-claro);
+      border: 1px solid rgba(200,212,232,0.08);
+      border-radius: 8px; padding: 2rem;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .producto-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0;
+      width: 3px; height: 0;
+      background: var(--naranja);
+      transition: height 0.3s;
+    }
+    .producto-card:hover::before { height: 100%; }
+    .producto-card:hover {
+      border-color: rgba(240,90,26,0.3);
+      transform: translateY(-3px);
+    }
+    .producto-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .producto-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 700; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .producto-card p { font-size: 0.88rem; color: var(--gris); line-height: 1.6; }
+
+    /* ── UBICACIÓN ── */
+    #contacto { background: var(--negro); }
+    .contacto-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .info-bloque { margin-bottom: 2rem; }
+    .info-bloque h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--naranja); margin-bottom: 0.8rem;
+    }
+    .info-bloque p, .info-bloque a {
+      font-size: 1rem; color: var(--gris-claro);
+      line-height: 1.8; text-decoration: none; display: block;
+    }
+    .info-bloque a:hover { color: var(--naranja); }
+    .horario-row {
+      display: flex; justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(200,212,232,0.07);
+    }
+    .horario-row .dia { font-size: 0.88rem; color: var(--gris); }
+    .horario-row .hora { font-size: 0.88rem; color: var(--gris-claro); font-weight: 500; }
+
+    .mapa-placeholder {
+      background: var(--acero);
+      border: 1px solid rgba(240,90,26,0.2);
+      border-radius: 8px; overflow: hidden; height: 320px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem; text-align: center; padding: 2rem;
+    }
+    .mapa-placeholder .map-icon { font-size: 3rem; }
+    .mapa-placeholder p { color: var(--gris); font-size: 0.9rem; }
+    .mapa-placeholder a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--naranja); color: #fff;
+      padding: 0.7rem 1.5rem; border-radius: 4px;
+      text-decoration: none; font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      transition: background 0.2s;
+    }
+    .mapa-placeholder a:hover { background: var(--naranja-claro); }
+
+    /* ── ENVÍOS ── */
+    .envios-banner {
+      background: linear-gradient(135deg, var(--acero) 0%, var(--acero-claro) 100%);
+      border: 1px solid rgba(240,90,26,0.2);
+      border-radius: 8px; padding: 2.5rem;
+      display: flex; align-items: center; gap: 2rem;
+      margin-top: 2rem; flex-wrap: wrap;
+    }
+    .envios-icon { font-size: 3rem; }
+    .envios-text h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 800; text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .envios-text p { font-size: 0.9rem; color: var(--gris-claro); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--acero);
+      border-top: 1px solid rgba(240,90,26,0.15);
+      padding: 3rem 5vw 2rem;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; flex-wrap: wrap;
+      gap: 2rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(200,212,232,0.08);
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+    }
+    .footer-logo span { color: var(--naranja); }
+    .footer-tagline { font-size: 0.85rem; color: var(--gris); margin-top: 0.4rem; }
+    .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a {
+      color: var(--gris); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--naranja); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem; padding-top: 1.5rem;
+      font-size: 0.8rem; color: var(--gris);
+    }
+
+    /* ── WA FLOTANTE ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      background: #25d366; color: #fff;
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1.6rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ── ANIMACIONES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .empresa-grid, .contacto-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .envios-banner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">BGM<span>·</span>DIESEL</div>
+  <ul class="nav-links">
+    <li><a href="#empresa">Empresa</a></li>
+    <li><a href="#marcas">Marcas</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-cta" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank">
+    💬 WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📍 Rosario, Santa Fe · Argentina</div>
+    <h1>Repuestos<br>para <em>Camiones</em><br>en Rosario</h1>
+    <p class="hero-sub">
+      BGM Diesel: más de 20 años siendo referencia en venta de repuestos para camiones en Rosario y toda Argentina. Mercedes Benz, Scania, Volvo, Iveco, Ford Cargo y más.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank">
+        💬 Consultar por WhatsApp
+      </a>
+      <a class="btn-secondary" href="#productos">Ver productos</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">+20</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Marcas atendidas</div>
+      </div>
+      <div>
+        <div class="stat-num">24</div>
+        <div class="stat-label">Provincias con envío</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    MERCEDES BENZ <span>✦</span> SCANIA <span>✦</span> VOLVO <span>✦</span> IVECO <span>✦</span> FORD CARGO <span>✦</span> MAN <span>✦</span> DAF <span>✦</span> REPUESTOS DIESEL <span>✦</span> ROSARIO SANTA FE <span>✦</span> ENVÍOS A TODO ARGENTINA <span>✦</span>&nbsp;&nbsp;&nbsp;
+    MERCEDES BENZ <span>✦</span> SCANIA <span>✦</span> VOLVO <span>✦</span> IVECO <span>✦</span> FORD CARGO <span>✦</span> MAN <span>✦</span> DAF <span>✦</span> REPUESTOS DIESEL <span>✦</span> ROSARIO SANTA FE <span>✦</span> ENVÍOS A TODO ARGENTINA <span>✦</span>
+  </div>
+</div>
+
+<!-- EMPRESA -->
+<section id="empresa">
+  <div class="empresa-grid">
+    <div>
+      <div class="section-label">Quiénes somos</div>
+      <h2>Referentes en <em>repuestos</em> para camiones</h2>
+      <p class="section-intro">
+        BGM Diesel es una empresa con sede en Rosario, Santa Fe, especializada exclusivamente en la venta de repuestos para camiones de las principales marcas del mercado. Atendemos a transportistas, flotas, talleres y particulares de todo el país.
+      </p>
+      <div class="empresa-features">
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-text">
+            <h4>Más de 20 años en el mercado</h4>
+            <p>Reconocida trayectoria y experiencia en repuestos para camiones en Rosario y la región.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📦</div>
+          <div class="feature-text">
+            <h4>Envíos a todo Argentina</h4>
+            <p>Despachamos a las 24 provincias. Tu pedido llega donde estés, rápido y seguro.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💡</div>
+          <div class="feature-text">
+            <h4>Asesoramiento especializado</h4>
+            <p>Nuestro equipo te ayuda a encontrar el repuesto exacto para tu camión.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌐</div>
+          <div class="feature-text">
+            <h4>Comercio exterior</h4>
+            <p>También operamos con importación y exportación de repuestos diesel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="empresa-visual">
+      <div class="visual-row">
+        <div class="visual-num">+20</div>
+        <div class="visual-desc">Años siendo la referencia en repuestos para camiones en Rosario, Santa Fe</div>
+      </div>
+      <div class="visual-row">
+        <div class="visual-num">6+</div>
+        <div class="visual-desc">Marcas de camiones atendidas: Mercedes Benz, Scania, Volvo, Iveco, Ford, MAN</div>
+      </div>
+      <div class="visual-row">
+        <div class="visual-num">24</div>
+        <div class="visual-desc">Provincias de Argentina a las que llegamos con envíos rápidos y seguros</div>
+      </div>
+      <div class="visual-row">
+        <div class="visual-num">3</div>
+        <div class="visual-desc">Canales de contacto: ventas, gerencia y comercio exterior</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="section-label">Marcas que atendemos</div>
+  <h2>Repuestos para las <em>principales marcas</em></h2>
+  <p class="section-intro">
+    Contamos con repuestos para camiones de todas las marcas líderes del mercado argentino. Si buscás repuestos para camiones en Rosario, BGM Diesel tiene lo que necesitás.
+  </p>
+  <div class="marcas-grid">
+    <div class="marca-card">
+      <div class="marca-nombre">Mercedes Benz</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">Scania</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">Volvo</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">Iveco</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">Ford Cargo</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">MAN</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">DAF</div>
+      <div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-nombre">Otras</div>
+      <div class="marca-tipo">Consultanos</div>
+    </div>
+  </div>
+
+  <div class="envios-banner">
+    <div class="envios-icon">🚚</div>
+    <div class="envios-text">
+      <h3>Enviamos a toda Argentina</h3>
+      <p>Desde Rosario, Santa Fe, despachamos repuestos para camiones a las 24 provincias. Consultá por costos y tiempos de envío según tu destino.</p>
+    </div>
+    <a class="btn-primary" style="margin-left:auto" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20envíos%20&phone=5493415317707" target="_blank">Consultar envío</a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="section-label">Nuestros productos</div>
+  <h2>¿Qué <em>repuestos</em> vendemos?</h2>
+  <p class="section-intro">
+    Contamos con un amplio stock de repuestos originales y alternativos para camiones diesel. Desde motor hasta frenos, tenemos todo lo que tu camión necesita.
+  </p>
+  <div class="productos-grid">
+    <div class="producto-card">
+      <div class="producto-icon">⚙️</div>
+      <h3>Motor y distribución</h3>
+      <p>Pistones, anillos, juntas, válvulas, árbol de levas, cojinetes y componentes de motor para camiones diesel.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">🔧</div>
+      <h3>Sistema de inyección</h3>
+      <p>Bombas de inyección, inyectores, toberas, filtros de combustible y componentes del sistema diesel.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">🛞</div>
+      <h3>Frenos y suspensión</h3>
+      <p>Pastillas, discos, tambores, campanas, amortiguadores, hojas de ballesta y bujes.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">🌡️</div>
+      <h3>Sistema de enfriamiento</h3>
+      <p>Radiadores, termostatos, bombas de agua, mangueras y tapa de radiador para camiones.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">⚡</div>
+      <h3>Sistema eléctrico</h3>
+      <p>Alternadores, arranques, sensores, cableado y componentes eléctricos para camiones.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">🔩</div>
+      <h3>Transmisión y embrague</h3>
+      <p>Discos de embrague, platos, collarines, cajas de cambio y componentes de transmisión.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">🛢️</div>
+      <h3>Lubricantes y filtros</h3>
+      <p>Aceites de motor, filtros de aceite, aire y combustible para todas las marcas de camiones.</p>
+    </div>
+    <div class="producto-card">
+      <div class="producto-icon">📋</div>
+      <h3>¿No encontrás tu repuesto?</h3>
+      <p>Consultanos por WhatsApp o teléfono. Nuestro equipo te ayuda a encontrar lo que necesitás.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-label">Dónde encontrarnos</div>
+  <h2>Visitanos en <em>Rosario</em></h2>
+  <div class="contacto-grid">
+    <div>
+      <div class="info-bloque">
+        <h4>📍 Dirección</h4>
+        <p>Bv. 27 de Febrero 3447</p>
+        <p>Rosario, Santa Fe (2000)</p>
+        <p>Argentina</p>
+      </div>
+      <div class="info-bloque">
+        <h4>📞 Teléfonos</h4>
+        <a href="tel:+543417926696">(0341) 792-6696</a>
+        <a href="tel:+543415317707">(0341) 531-7707</a>
+      </div>
+      <div class="info-bloque">
+        <h4>📧 Correo electrónico</h4>
+        <a href="mailto:ventas@bgmdiesel.com.ar">ventas@bgmdiesel.com.ar</a>
+        <a href="mailto:gerencia@bgmdiesel.com.ar">gerencia@bgmdiesel.com.ar</a>
+        <a href="mailto:comercio.exterior@bgmdiesel.com.ar">comercio.exterior@bgmdiesel.com.ar</a>
+      </div>
+      <div class="info-bloque">
+        <h4>🕐 Horario de atención</h4>
+        <div class="horario-row">
+          <span class="dia">Lunes a Viernes</span>
+          <span class="hora">08:00 – 17:00 hs</span>
+        </div>
+        <div class="horario-row">
+          <span class="dia">Sábados</span>
+          <span class="hora">08:00 – 12:00 hs</span>
+        </div>
+        <div class="horario-row">
+          <span class="dia">Domingos</span>
+          <span class="hora">Cerrado</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="mapa-placeholder">
+        <div class="map-icon">🗺️</div>
+        <p><strong>Bv. 27 de Febrero 3447</strong><br>Rosario, Santa Fe</p>
+        <a href="https://maps.google.com/?q=Bv.+27+de+Febrero+3447,+Rosario,+Santa+Fe" target="_blank">
+          📍 Abrir en Google Maps
+        </a>
+      </div>
+      <div style="margin-top:1.5rem">
+        <a class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank">
+          💬 Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">BGM<span>·</span>DIESEL</div>
+      <div class="footer-tagline">Repuestos para camiones en Rosario, Santa Fe · Argentina</div>
+    </div>
+    <div class="footer-links">
+      <a href="#empresa">Empresa</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-links">
+      <a href="tel:+543417926696">(0341) 792-6696</a>
+      <a href="mailto:ventas@bgmdiesel.com.ar">ventas@bgmdiesel.com.ar</a>
+      <a href="https://maps.google.com/?q=Bv.+27+de+Febrero+3447,+Rosario" target="_blank">Bv. 27 de Febrero 3447, Rosario</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 B.G.M Diesel · Todos los derechos reservados</span>
+    <span>Repuestos para camiones · Rosario · Santa Fe · Argentina</span>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" aria-label="WhatsApp BGM Diesel">
+  💬
+</a>
+
+</body>
+</html>
