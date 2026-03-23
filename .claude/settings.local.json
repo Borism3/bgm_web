@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(py --version)",
+      "Bash(where python:*)",
+      "Bash(where py:*)",
+      "Bash(py -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(python \"C:\\\\Users\\\\Boris Muller\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python.exe\" --version)",
+      "Bash(magick --version)",
+      "Bash(convert --version)",
+      "Bash(cwebp --version)",
+      "Bash(ffmpeg -version)"
+    ]
+  }
+}

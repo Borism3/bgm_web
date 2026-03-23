@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BGM Diesel – Repuestos para Camiones en Rosario, Santa Fe</title>
-  <meta name="description" content="BGM Diesel: líder en venta de repuestos para camiones en Rosario, Santa Fe. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo. Envíos a todo Argentina. ☎ (0341) 792-6696" />
+  <meta name="description" content="BGM Diesel: líder en venta de repuestos para camiones en Rosario, Santa Fe. Scania, Mercedes Benz, Volvo, Cummins, Ford Cargo. Envíos a todo Argentina. ☎ (0341) 792-6696 / (0341) 431-2003" />
   <meta name="keywords" content="repuestos camiones Rosario, repuestos diesel Rosario, repuestos Mercedes Benz camión, repuestos Scania Rosario, repuestos Volvo camión, repuestos Cummins Rosario, venta repuestos camiones Santa Fe, BGM Diesel" />
   <meta property="og:title" content="BGM Diesel – Repuestos para Camiones en Rosario" />
-  <meta property="og:description" content="Más de 30 años vendiendo repuestos para camiones en Rosario. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo. Envíos a todo el país." />
+  <meta property="og:description" content="Más de 30 años vendiendo repuestos para camiones en Rosario. Scania, Mercedes Benz, Volvo, Cummins, Ford Cargo. Envíos a todo el país." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.bgmdiesel.com" />
   <meta property="og:locale" content="es_AR" />
@@ -17,9 +17,9 @@
     "@context": "https://schema.org",
     "@type": "AutoPartsStore",
     "name": "BGM Diesel",
-    "description": "Empresa especializada en la venta de repuestos para camiones en Rosario, Santa Fe, Argentina. Más de 30 años de trayectoria. Marcas: Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo.",
+    "description": "Empresa especializada en la venta de repuestos para camiones en Rosario, Santa Fe, Argentina. Más de 30 años de trayectoria. Marcas: Scania, Mercedes Benz, Volvo, Cummins, Ford Cargo.",
     "url": "https://www.bgmdiesel.com",
-    "telephone": ["+543417926696", "+543415317707"],
+    "telephone": ["+543417926696", "+543414312003"],
     "email": "ventas@bgmdiesel.com.ar",
     "address": {
       "@type": "PostalAddress",
@@ -40,7 +40,9 @@
   <link rel="canonical" href="https://www.bgmdiesel.com/" />
   <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap"></noscript>
   <link rel="preload" as="image" href="img/carrousel/img1.jpg">
 
   <style>
@@ -233,42 +235,22 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* CATALOGO */
-    #catalogo { background: var(--fondo); }
-    .catalogo-toolbar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
-    .catalogo-search { flex: 1; min-width: 220px; padding: 0.7rem 1rem; border: 1px solid var(--borde); border-radius: 5px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--texto); background: #fff; outline: none; transition: border-color 0.2s; }
-    .catalogo-search:focus { border-color: var(--cyan); }
-    .catalogo-filter { padding: 0.7rem 1rem; border: 1px solid var(--borde); border-radius: 5px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--texto); background: #fff; outline: none; cursor: pointer; transition: border-color 0.2s; }
-    .catalogo-filter:focus { border-color: var(--cyan); }
-    .catalogo-count { font-size: 0.82rem; color: var(--gris); margin-left: auto; }
+    /* CATALOGO BANNER */
+    #catalogo { background: var(--navy); }
 
-    .catalogo-table-wrap { overflow-x: auto; border-radius: 8px; box-shadow: 0 2px 16px rgba(26,48,96,0.07); }
-    table.catalogo { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.88rem; }
-    table.catalogo thead { background: var(--navy); color: #fff; }
-    table.catalogo thead th { padding: 1rem 1.1rem; text-align: left; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; white-space: nowrap; }
-    table.catalogo tbody tr { border-bottom: 1px solid var(--borde); transition: background 0.15s; }
-    table.catalogo tbody tr:last-child { border-bottom: none; }
-    table.catalogo tbody tr:hover { background: var(--fondo-card); }
-    table.catalogo td { padding: 0.85rem 1.1rem; color: var(--suave); vertical-align: middle; }
-    table.catalogo td:first-child { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.95rem; white-space: nowrap; }
-    table.catalogo td .marca-tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 3px; background: rgba(26,48,96,0.08); color: var(--navy); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; }
-    .badge-stock { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
-    .badge-stock.disponible { background: #d1f7e2; color: #0a5c2c; }
-    .badge-stock.consultar  { background: #d0ebf5; color: #0a4d6e; }
-    .badge-stock.sin-stock  { background: #fce8e8; color: var(--rojo); }
-
-    .catalogo-empty { text-align: center; padding: 3.5rem 1rem; color: var(--gris); font-size: 0.93rem; }
-    .catalogo-aviso { background: var(--navy); border-radius: 8px; padding: 1.4rem 1.8rem; margin-top: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .catalogo-aviso p { color: rgba(255,255,255,0.72); font-size: 0.87rem; line-height: 1.6; flex: 1; }
-    .catalogo-aviso strong { color: #fff; }
+    /* HAMBURGER */
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; color: #fff; font-size: 1.6rem; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; padding: 0; line-height: 1; }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; width: 100%; background: var(--navy); padding: 1rem 5vw 1.5rem; gap: 0; border-bottom: 3px solid var(--cyan); z-index: 99; }
+      .nav-links.open li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .nav-links.open a { padding: 0.85rem 0; font-size: 1rem; color: rgba(255,255,255,0.85); }
+      .nav-hamburger { display: flex; }
       .empresa-grid, .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero-stats { gap: 1.5rem; }
       .envios-banner { flex-direction: column; }
       .envios-banner .btn-primary { margin-left: 0; }
-      .catalogo-count { margin-left: 0; }
     }
   </style>
 </head>
@@ -276,13 +258,14 @@
 
 <nav>
   <a href="#hero" class="nav-logo-link"><img src="img/logo.jpg" alt="BGM Diesel – Repuestos para Camiones" class="nav-logo-img" fetchpriority="high" width="160" height="52"></a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#empresa">Empresa</a></li>
     <li><a href="#marcas">Marcas</a></li>
     <li><a href="#productos">Productos</a></li>
-    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
   <a class="nav-cta" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">💬 WhatsApp</a>
 </nav>
 
@@ -295,7 +278,7 @@
   <div class="hero-content">
     <div class="hero-tag">📍 Rosario, Santa Fe · Argentina</div>
     <h1>Repuestos<br>para <em>Camiones</em><br>en Rosario</h1>
-    <p class="hero-sub">BGM Diesel: más de 30 años siendo referencia en repuestos para camiones en Rosario y toda Argentina. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo y más.</p>
+    <p class="hero-sub">BGM Diesel: más de 30 años siendo referencia en repuestos para camiones en Rosario y toda Argentina. Scania, Mercedes Benz, Volvo, Cummins, Ford Cargo y más.</p>
     <div class="hero-btns">
       <a class="btn-primary" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">💬 Consultar por WhatsApp</a>
       <a class="btn-outline" href="#productos">Ver productos</a>
@@ -324,14 +307,12 @@
         <div class="feat"><div class="feat-icon">🏆</div><div class="feat-text"><h3>Más de 30 años en el mercado</h3><p>Más de 30 años de reconocida trayectoria y experiencia en repuestos para camiones en Rosario y la región.</p></div></div>
         <div class="feat"><div class="feat-icon">📦</div><div class="feat-text"><h3>Envíos a todo Argentina</h3><p>Despachamos a las 24 provincias. Tu pedido llega donde estés, rápido y seguro.</p></div></div>
         <div class="feat"><div class="feat-icon">💡</div><div class="feat-text"><h3>Asesoramiento especializado</h3><p>Nuestro equipo te ayuda a encontrar el repuesto exacto para tu camión.</p></div></div>
-        <div class="feat"><div class="feat-icon">🌐</div><div class="feat-text"><h3>Comercio exterior</h3><p>También operamos con importación y exportación de repuestos diesel.</p></div></div>
       </div>
     </div>
     <div class="nums-box">
       <div class="num-row"><div class="num-big">+30</div><div class="num-desc">Años siendo la referencia en repuestos para camiones en Rosario, Santa Fe</div></div>
-      <div class="num-row"><div class="num-big">6+</div><div class="num-desc">Marcas atendidas: Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo</div></div>
+      <div class="num-row"><div class="num-big">6+</div><div class="num-desc">Marcas atendidas: Scania, Mercedes Benz, Volvo, Cummins, Ford Cargo</div></div>
       <div class="num-row"><div class="num-big">24</div><div class="num-desc">Provincias de Argentina a las que llegamos con envíos rápidos y seguros</div></div>
-      <div class="num-row"><div class="num-big">3</div><div class="num-desc">Canales de contacto: ventas, gerencia y comercio exterior</div></div>
     </div>
   </div>
 </section>
@@ -365,12 +346,12 @@
   <p class="intro">Contamos con repuestos para camiones de todas las marcas líderes del mercado argentino. Si buscás repuestos para camiones en Rosario, BGM Diesel tiene lo que necesitás.</p>
   <div class="marcas-grid">
     <div class="marca-card">
-      <div class="marca-logo-wrap"><img class="marca-logo" src="img/truck_brands/Mercedes.jpg" alt="Mercedes Benz" loading="lazy" width="120" height="56"></div>
-      <div class="marca-nom">Mercedes Benz</div><div class="marca-tipo">Camiones</div>
-    </div>
-    <div class="marca-card">
       <div class="marca-logo-wrap"><img class="marca-logo" src="img/truck_brands/scania.jpg" alt="Scania" loading="lazy" width="120" height="56"></div>
       <div class="marca-nom">Scania</div><div class="marca-tipo">Camiones</div>
+    </div>
+    <div class="marca-card">
+      <div class="marca-logo-wrap"><img class="marca-logo" src="img/truck_brands/Mercedes.jpg" alt="Mercedes Benz" loading="lazy" width="120" height="56"></div>
+      <div class="marca-nom">Mercedes Benz</div><div class="marca-tipo">Camiones</div>
     </div>
     <div class="marca-card">
       <div class="marca-logo-wrap"><img class="marca-logo" src="img/truck_brands/volvo.jpg" alt="Volvo" loading="lazy" width="120" height="56"></div>
@@ -402,12 +383,12 @@
   <p class="intro">Amplio stock de repuestos originales y alternativos para camiones diesel. Desde motor hasta frenos, tenemos todo lo que tu camión necesita.</p>
   <div class="productos-grid">
     <div class="prod-card"><div class="prod-icon">⚙️</div><h3>Motor y distribución</h3><p>Pistones, anillos, juntas, válvulas, árbol de levas, cojinetes y componentes de motor para camiones diesel.</p></div>
-    <div class="prod-card"><div class="prod-icon">🔧</div><h3>Sistema de inyección</h3><p>Bombas de inyección, inyectores, toberas, filtros de combustible y componentes del sistema diesel.</p></div>
-    <div class="prod-card"><div class="prod-icon">🛞</div><h3>Frenos y suspensión</h3><p>Pastillas, discos, tambores, campanas, amortiguadores, hojas de ballesta y bujes.</p></div>
-    <div class="prod-card"><div class="prod-icon">🌡️</div><h3>Sistema de enfriamiento</h3><p>Radiadores, termostatos, bombas de agua, mangueras y tapas de radiador para camiones.</p></div>
-    <div class="prod-card"><div class="prod-icon">⚡</div><h3>Sistema eléctrico</h3><p>Alternadores, arranques, sensores, cableado y componentes eléctricos para camiones.</p></div>
-    <div class="prod-card"><div class="prod-icon">🔩</div><h3>Transmisión y embrague</h3><p>Discos de embrague, platos, collarines, cajas de cambio y componentes de transmisión.</p></div>
-    <div class="prod-card"><div class="prod-icon">🛢️</div><h3>Lubricantes y filtros</h3><p>Aceites de motor, filtros de aceite, aire y combustible para todas las marcas de camiones.</p></div>
+    <div class="prod-card"><div class="prod-icon">🔧</div><h3>Sistema de inyección</h3><p>Bombas alimentadoras, inyectores, toberas, filtros de combustible y componentes del sistema diesel.</p></div>
+    <div class="prod-card"><div class="prod-icon">🛞</div><h3>Frenos y suspensión</h3><p>Pastillas, discos, tambores, campanas, amortiguadores, manotas, pernos y bujes.</p></div>
+    <div class="prod-card"><div class="prod-icon">🌡️</div><h3>Sistema de enfriamiento</h3><p>Radiadores, termostatos, bombas de agua, mangueras,enfriadores de aceite, caja y motor y tapas de radiador para camiones.</p></div>
+    <div class="prod-card"><div class="prod-icon">⚡</div><h3>Sistema eléctrico</h3><p>Alternadores, arranques, sensores y componentes eléctricos para camiones.</p></div>
+    <div class="prod-card"><div class="prod-icon">🔩</div><h3>Transmisión y embrague</h3><p>Discos de embrague, platos, crapodina, componentes de cajas de cambio y componentes de transmisión.</p></div>
+    <div class="prod-card"><div class="prod-icon">🛢️</div><h3>Lubricantes y filtros</h3><p>Filtros de aceite, aire, habitaculo, secado de aire y combustible .</p></div>
     <div class="prod-card prod-cta"><div class="prod-icon">📋</div><h3>¿No encontrás tu repuesto?</h3><p>Consultanos por WhatsApp o teléfono. Nuestro equipo te ayuda a encontrar lo que necesitás.</p></div>
   </div>
   <div class="providers-strip">
@@ -423,57 +404,11 @@
   </div>
 </section>
 
-<section id="catalogo">
-  <div class="label">Stock disponible</div>
-  <h2>Catálogo de <em>piezas</em></h2>
-  <p class="intro">Listado de repuestos disponibles en nuestro local de Rosario. Consultanos por cualquier pieza que no encuentres aquí.</p>
-
-  <div class="catalogo-toolbar">
-    <input class="catalogo-search" id="catSearch" type="text" placeholder="Buscar por código, descripción o marca...">
-    <select class="catalogo-filter" id="catFilterMarca">
-      <option value="">Todas las marcas</option>
-      <option>Mercedes Benz</option>
-      <option>Scania</option>
-      <option>Volvo</option>
-      <option>Cummins</option>
-      <option>Ford Cargo</option>
-      <option>Universal</option>
-    </select>
-    <select class="catalogo-filter" id="catFilterCat">
-      <option value="">Todas las categorías</option>
-      <option>Motor y distribución</option>
-      <option>Sistema de inyección</option>
-      <option>Frenos y suspensión</option>
-      <option>Sistema de enfriamiento</option>
-      <option>Sistema eléctrico</option>
-      <option>Transmisión y embrague</option>
-      <option>Lubricantes y filtros</option>
-    </select>
-    <span class="catalogo-count" id="catCount"></span>
-  </div>
-
-  <div class="catalogo-table-wrap">
-    <table class="catalogo" id="catTable">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Descripción</th>
-          <th>Marca</th>
-          <th>Categoría</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody id="catBody">
-        <tr><td colspan="5" class="catalogo-empty">Cargando catálogo...</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="catalogo-aviso">
-    <span style="font-size:1.8rem">📋</span>
-    <p><strong>¿No encontrás lo que buscás?</strong> Este listado se actualiza periódicamente. Contactanos por WhatsApp o teléfono y te consultamos stock al momento.</p>
-    <a class="btn-primary" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20stock%20de%20un%20repuesto%20&phone=5493415317707" target="_blank" rel="noopener">💬 Consultar stock</a>
-  </div>
+<section id="catalogo" style="background:var(--navy); text-align:center;">
+  <div class="label" style="color:#7dd8f5;">Stock disponible</div>
+  <h2 style="color:#fff;">Catálogo de <em>piezas</em></h2>
+  <p class="intro" style="color:rgba(255,255,255,0.65); margin:0 auto 2.5rem;">Accedé al listado completo de repuestos con búsqueda, filtros y consulta directa por WhatsApp.</p>
+  <a href="catalogo.html" class="btn-primary" style="font-size:1.05rem; padding:1rem 2.5rem; display:inline-flex; align-items:center; gap:0.5rem;">📋 Ver catálogo completo</a>
 </section>
 
 <section id="contacto">
@@ -489,13 +424,12 @@
       <div class="info-bloque">
         <h3>📞 Teléfonos</h3>
         <a href="tel:+543417926696">(0341) 792-6696</a>
-        <a href="tel:+543415317707">(0341) 531-7707</a>
+        <a href="tel:+543414312003">(0341) 431-2003</a>
       </div>
       <div class="info-bloque">
         <h3>📧 Correo electrónico</h3>
         <a href="mailto:ventas@bgmdiesel.com.ar">ventas@bgmdiesel.com.ar</a>
         <a href="mailto:gerencia@bgmdiesel.com.ar">gerencia@bgmdiesel.com.ar</a>
-        <a href="mailto:comercio.exterior@bgmdiesel.com.ar">comercio.exterior@bgmdiesel.com.ar</a>
       </div>
       <div class="info-bloque">
         <h3>🕐 Horario de atención</h3>
@@ -515,7 +449,8 @@
           <a class="btn-navy" href="https://www.instagram.com/bgmdiesel/" target="_blank" rel="noopener" style="margin-top:0.6rem; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);">📷 Seguinos en Instagram</a>
         </div>
       </div>
-      <a class="btn-wa" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">💬 Escribinos por WhatsApp</a>
+      <a class="btn-wa" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">💬 WhatsApp Ventas</a>
+      <a class="btn-wa" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493413030806" target="_blank" rel="noopener" style="background:#1a8a4a;">💬 WhatsApp Administración</a>
     </div>
   </div>
 </section>
@@ -533,13 +468,13 @@
       <a href="#empresa">Empresa</a>
       <a href="#marcas">Marcas</a>
       <a href="#productos">Productos</a>
-      <a href="#catalogo">Catálogo</a>
+      <a href="catalogo.html">Catálogo</a>
       <a href="#contacto">Contacto</a>
     </div>
     <div class="footer-col">
       <h3>Contacto</h3>
       <a href="tel:+543417926696">(0341) 792-6696</a>
-      <a href="tel:+543415317707">(0341) 531-7707</a>
+      <a href="tel:+543414312003">(0341) 431-2003</a>
       <a href="mailto:ventas@bgmdiesel.com.ar">ventas@bgmdiesel.com.ar</a>
       <p>Bv. 27 de Febrero 3447, Rosario</p>
     </div>
@@ -558,6 +493,7 @@
 <a class="wa-float" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener" aria-label="WhatsApp BGM Diesel">💬</a>
 
 <script>
+  // Carrusel
   (function() {
     var track = document.getElementById('carouselTrack');
     var dots = document.getElementById('carouselDots').querySelectorAll('button');
@@ -584,84 +520,22 @@
     startAuto();
   })();
 
-  // Catálogo: carga CSV y búsqueda/filtro
+  // Menú hamburguesa (móvil)
   (function() {
-    var search      = document.getElementById('catSearch');
-    var filterMarca = document.getElementById('catFilterMarca');
-    var filterCat   = document.getElementById('catFilterCat');
-    var countEl     = document.getElementById('catCount');
-    var tbody       = document.getElementById('catBody');
-
-    var estadoClass = { 'disponible': 'disponible', 'consultar': 'consultar', 'sin stock': 'sin-stock' };
-
-    function parseCSV(text) {
-      var lines = text.trim().split('\n');
-      var rows = [];
-      for (var i = 1; i < lines.length; i++) {
-        var cols = lines[i].split(',');
-        if (cols.length >= 5) {
-          rows.push({
-            codigo:      cols[0].trim(),
-            descripcion: cols[1].trim(),
-            marca:       cols[2].trim(),
-            categoria:   cols[3].trim(),
-            estado:      cols[4].trim()
-          });
-        }
-      }
-      return rows;
-    }
-
-    function buildRows(rows) {
-      if (!rows.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="catalogo-empty">No hay piezas en el catálogo todavía.</td></tr>';
-        countEl.textContent = '';
-        return;
-      }
-      var html = '';
-      rows.forEach(function(r) {
-        var cls = estadoClass[r.estado.toLowerCase()] || 'consultar';
-        html += '<tr data-marca="' + r.marca.toLowerCase() + '" data-cat="' + r.categoria.toLowerCase() + '">' +
-          '<td>' + r.codigo + '</td>' +
-          '<td>' + r.descripcion + '</td>' +
-          '<td><span class="marca-tag">' + r.marca + '</span></td>' +
-          '<td>' + r.categoria + '</td>' +
-          '<td><span class="badge-stock ' + cls + '">' + r.estado + '</span></td>' +
-          '</tr>';
+    var btn   = document.getElementById('navHamburger');
+    var links = document.getElementById('navLinks');
+    btn.addEventListener('click', function() {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.innerHTML = open ? '&#10005;' : '&#9776;';
+    });
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '&#9776;';
       });
-      tbody.innerHTML = html;
-      filterRows();
-    }
-
-    function filterRows() {
-      var q     = search.value.toLowerCase();
-      var marca = filterMarca.value.toLowerCase();
-      var cat   = filterCat.value.toLowerCase();
-      var rows  = tbody.querySelectorAll('tr[data-marca]');
-      var visible = 0;
-      rows.forEach(function(row) {
-        var text  = row.textContent.toLowerCase();
-        var match = (!q || text.includes(q)) &&
-                    (!marca || row.dataset.marca.includes(marca)) &&
-                    (!cat   || row.dataset.cat.includes(cat));
-        row.style.display = match ? '' : 'none';
-        if (match) visible++;
-      });
-      countEl.textContent = visible + ' resultado' + (visible !== 1 ? 's' : '');
-    }
-
-    search.addEventListener('input', filterRows);
-    filterMarca.addEventListener('change', filterRows);
-    filterCat.addEventListener('change', filterRows);
-
-    var catalogoData = [
-      { codigo: 'BGM-001', descripcion: 'Junta de tapa de cilindros',  marca: 'Mercedes Benz', categoria: 'Motor y distribución',    estado: 'Disponible' },
-      { codigo: 'BGM-002', descripcion: 'Bomba de inyección completa', marca: 'Scania',         categoria: 'Sistema de inyección',    estado: 'Disponible' },
-      { codigo: 'BGM-003', descripcion: 'Kit de embrague',             marca: 'Volvo',          categoria: 'Transmisión y embrague',  estado: 'Consultar'  },
-      { codigo: 'BGM-004', descripcion: 'Filtro de aceite',            marca: 'Universal',      categoria: 'Lubricantes y filtros',   estado: 'Disponible' },
-      { codigo: 'BGM-005', descripcion: 'Alternador reconstruido',     marca: 'Cummins',        categoria: 'Sistema eléctrico',       estado: 'Sin stock'  }
-    ];
-    buildRows(catalogoData);
+    });
   })();
 </script>
 

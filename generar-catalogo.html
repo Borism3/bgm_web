@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Catálogo – BGM Diesel</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f4f8; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    .card { background: #fff; border-radius: 10px; padding: 2.5rem; max-width: 520px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.10); }
+    h1 { font-size: 1.3rem; color: #1a3060; margin-bottom: 0.4rem; }
+    p  { color: #5a6f85; font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6; }
+    .drop-zone { border: 2px dashed #2ba8d8; border-radius: 8px; padding: 2.5rem 1rem; text-align: center; cursor: pointer; color: #2ba8d8; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; }
+    .drop-zone:hover, .drop-zone.over { background: #eaf6fd; }
+    input[type=file] { display: none; }
+    #status { margin-top: 1.2rem; font-size: 0.88rem; color: #333; min-height: 1.4rem; }
+    #status.ok  { color: #0a5c2c; font-weight: 600; }
+    #status.err { color: #cc1a1a; font-weight: 600; }
+    #preview { margin-top: 1.2rem; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.82rem; }
+    th { background: #1a3060; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.45rem 0.8rem; border-bottom: 1px solid #e5e9f0; color: #333; }
+    tr:last-child td { border-bottom: none; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .disponible { background: #d1f7e2; color: #0a5c2c; }
+    .consultar  { background: #d0ebf5; color: #0a4d6e; }
+    .btn { display: block; margin-top: 1.5rem; background: #1a3060; color: #fff; border: none; border-radius: 6px; padding: 0.85rem; width: 100%; font-size: 1rem; font-weight: 700; cursor: pointer; text-align: center; transition: background 0.2s; }
+    .btn:hover { background: #253d7a; }
+    .btn:disabled { background: #b0b8c4; cursor: default; }
+    .note { font-size: 0.78rem; color: #888; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>🗂️ Generador de Catálogo BGM Diesel</h1>
+  <p>Seleccioná tu archivo Excel con las columnas <strong>Código</strong>, <strong>Descripción</strong> y <strong>Stock Act.</strong> El archivo <code>catalogo.js</code> se va a descargar automáticamente.</p>
+
+  <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+    📂 Hacé clic o arrastrá tu archivo .xlsx aquí
+  </div>
+  <input type="file" id="fileInput" accept=".xlsx,.xls">
+
+  <div id="status"></div>
+  <div id="preview"></div>
+  <button class="btn" id="downloadBtn" disabled>⬇️ Descargar catalogo.js</button>
+  <p class="note">Reemplazá el archivo <code>catalogo.js</code> en la carpeta del sitio con el que descargues acá.</p>
+</div>
+
+<script>
+  var generatedContent = '';
+
+  function stockLabel(n) {
+    return n > 15 ? 'Disponible' : 'Consultar';
+  }
+
+  function processFile(file) {
+    var status  = document.getElementById('status');
+    var preview = document.getElementById('preview');
+    var btn     = document.getElementById('downloadBtn');
+    status.className = '';
+    status.textContent = 'Procesando...';
+    preview.innerHTML = '';
+    btn.disabled = true;
+    generatedContent = '';
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var wb   = XLSX.read(e.target.result, { type: 'array' });
+        var ws   = wb.Sheets[wb.SheetNames[0]];
+        var data = XLSX.utils.sheet_to_json(ws, { defval: '' });
+
+        if (!data.length) { throw new Error('El archivo está vacío.'); }
+
+        // Find columns (flexible matching)
+        var sample  = data[0];
+        var keys    = Object.keys(sample);
+        var colCod  = keys.find(function(k) { return /c.d/i.test(k); });
+        var colDesc = keys.find(function(k) { return /desc/i.test(k); });
+        var colStk  = keys.find(function(k) { return /stock/i.test(k); });
+
+        if (!colCod || !colDesc || !colStk) {
+          throw new Error('No se encontraron las columnas. Asegurate de tener: Código, Descripción, Stock Act.');
+        }
+
+        var rows = data.map(function(row) {
+          return {
+            codigo:      String(row[colCod]).trim(),
+            descripcion: String(row[colDesc]).trim(),
+            stock:       parseInt(row[colStk], 10) || 0
+          };
+        }).filter(function(r) { return r.codigo && r.descripcion; });
+
+        if (!rows.length) { throw new Error('No se encontraron filas válidas.'); }
+
+        // Build catalogo.js
+        var lines = rows.map(function(r) {
+          return '  { codigo: ' + JSON.stringify(r.codigo) + ', descripcion: ' + JSON.stringify(r.descripcion) + ', stock: ' + r.stock + ' }';
+        });
+        generatedContent = [
+          '// Generado automáticamente desde Excel — ' + new Date().toLocaleDateString('es-AR'),
+          '// NO editar manualmente. Usar generar-catalogo.html para actualizar.',
+          '',
+          'window.CATALOGO = [',
+          lines.join(',\n'),
+          '];'
+        ].join('\n');
+
+        // Preview table (first 8 rows)
+        var shown = rows.slice(0, 8);
+        var html = '<table><thead><tr><th>Código</th><th>Descripción</th><th>Stock</th></tr></thead><tbody>';
+        shown.forEach(function(r) {
+          var lbl = stockLabel(r.stock);
+          var cls = lbl === 'Disponible' ? 'disponible' : 'consultar';
+          html += '<tr><td>' + r.codigo + '</td><td>' + r.descripcion + '</td><td><span class="badge ' + cls + '">' + lbl + '</span></td></tr>';
+        });
+        if (rows.length > 8) html += '<tr><td colspan="3" style="color:#888;text-align:center">… y ' + (rows.length - 8) + ' más</td></tr>';
+        html += '</tbody></table>';
+        preview.innerHTML = html;
+
+        status.className = 'ok';
+        status.textContent = '✔ ' + rows.length + ' productos leídos correctamente.';
+        btn.disabled = false;
+
+      } catch(err) {
+        status.className = 'err';
+        status.textContent = '✗ Error: ' + err.message;
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  document.getElementById('fileInput').addEventListener('change', function(e) {
+    if (e.target.files[0]) processFile(e.target.files[0]);
+  });
+
+  var dz = document.getElementById('dropZone');
+  dz.addEventListener('dragover',  function(e) { e.preventDefault(); dz.classList.add('over'); });
+  dz.addEventListener('dragleave', function()  { dz.classList.remove('over'); });
+  dz.addEventListener('drop',      function(e) { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]); });
+
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+    if (!generatedContent) return;
+    var blob = new Blob([generatedContent], { type: 'text/javascript' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'catalogo.js';
+    a.click();
+  });
+</script>
+</body>
+</html>
