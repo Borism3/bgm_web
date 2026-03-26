@@ -56,19 +56,26 @@
     .catalogo-search:focus { border-color: #32373c; }
     .catalogo-count { font-size: 0.82rem; color: var(--gris); margin-left: auto; }
 
-    /* CARDS */
-    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
-    .cat-card { background: #fff; border: 1px solid #e5e9f0; border-radius: 6px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; transition: box-shadow 0.2s, transform 0.2s; }
-    .cat-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.10); transform: translateY(-2px); }
-    .cat-card-code { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
-    .cat-card-name { font-size: 0.92rem; font-weight: 600; color: #1a1a1a; line-height: 1.45; flex: 1; }
-    .cat-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.4rem; gap: 0.5rem; }
+    /* LISTA */
+    .cat-grid { display: flex; flex-direction: column; background: #fff; border: 1px solid #e5e9f0; border-radius: 6px; overflow: hidden; }
+    .cat-list-header { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 1rem; background: #3a5a9a; color: rgba(255,255,255,0.8); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    .cat-list-header .col-cod  { width: 120px; flex-shrink: 0; }
+    .cat-list-header .col-desc { flex: 1; }
+    .cat-list-header .col-stk  { width: 100px; flex-shrink: 0; text-align: center; }
+    .cat-list-header .col-wa   { width: 110px; flex-shrink: 0; }
+    .cat-row { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 1rem; border-top: 1px solid #f0f3f8; transition: background 0.15s; }
+    .cat-row:nth-child(even) { background: #f9fafc; }
+    .cat-row:hover { background: #eef3fb; }
+    .cat-row-code { width: 120px; flex-shrink: 0; font-size: 0.75rem; color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cat-row-name { flex: 1; font-size: 0.9rem; font-weight: 500; color: #1a1a1a; line-height: 1.4; }
+    .cat-row-stk  { width: 100px; flex-shrink: 0; text-align: center; }
+    .cat-row-wa   { width: 110px; flex-shrink: 0; }
     .badge-stock { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 3px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     .badge-stock.disponible { background: #e8f5e9; color: #2e7d32; }
-    .badge-stock.consultar  { background: #e3f2fd; color: #1565c0; }
-    .cat-card-wa { display: inline-flex; align-items: center; gap: 0.35rem; background: #32373c; color: #fff; padding: 0.45rem 0.9rem; border-radius: 4px; text-decoration: none; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; transition: background 0.2s; }
-    .cat-card-wa:hover { background: #000; }
-    .catalogo-empty { grid-column: 1/-1; text-align: center; padding: 3.5rem 1rem; color: var(--gris); font-size: 0.93rem; }
+    .badge-stock.consultar  { background: #ddeeff; color: #2979cc; }
+    .cat-card-wa { display: inline-flex; align-items: center; gap: 0.3rem; background: #25d366; color: #fff; padding: 0.35rem 0.7rem; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 700; white-space: nowrap; transition: background 0.2s; }
+    .cat-card-wa:hover { background: #1ebe59; }
+    .catalogo-empty { text-align: center; padding: 3.5rem 1rem; color: var(--gris); font-size: 0.93rem; }
 
     /* PAGINACION */
     .cat-pagination { display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin-top: 2rem; flex-wrap: wrap; }
@@ -94,7 +101,11 @@
     .wa-float:hover { transform: scale(1.1); }
 
     @media (max-width: 600px) {
-      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .cat-list-header { display: none; }
+      .cat-row { flex-wrap: wrap; gap: 0.4rem; padding: 0.8rem 0.8rem; }
+      .cat-row-code { width: auto; font-size: 0.7rem; }
+      .cat-row-name { width: 100%; flex: none; font-size: 0.88rem; }
+      .cat-row-stk, .cat-row-wa { width: auto; }
     }
   </style>
 </head>
@@ -120,6 +131,12 @@
     </div>
 
     <div class="cat-grid" id="catBody">
+      <div class="cat-list-header">
+        <span class="col-cod">Código</span>
+        <span class="col-desc">Descripción</span>
+        <span class="col-stk">Disponibilidad</span>
+        <span class="col-wa"></span>
+      </div>
       <div class="catalogo-empty">Cargando catálogo...</div>
     </div>
     <div class="cat-pagination" id="catPagination"></div>
@@ -162,8 +179,9 @@
     }
 
     function renderPage() {
+      var header = '<div class="cat-list-header"><span class="col-cod">C\u00f3digo</span><span class="col-desc">Descripci\u00f3n</span><span class="col-stk">Disponibilidad</span><span class="col-wa"></span></div>';
       if (!filtered.length) {
-        grid.innerHTML = '<div class="catalogo-empty">No se encontraron repuestos.</div>';
+        grid.innerHTML = header + '<div class="catalogo-empty">No se encontraron repuestos.</div>';
         pagination.innerHTML = '';
         countEl.textContent = '0 resultados';
         return;
@@ -172,16 +190,14 @@
       if (currentPage > totalPages) currentPage = 1;
       var start = (currentPage - 1) * PAGE_SIZE;
       var page  = filtered.slice(start, start + PAGE_SIZE);
-      var html  = '';
+      var html  = header;
       page.forEach(function(r) {
         var b = stockBadge(r.stock);
-        html += '<div class="cat-card">' +
-          '<div class="cat-card-code">' + r.codigo + '</div>' +
-          '<div class="cat-card-name">' + r.descripcion + '</div>' +
-          '<div class="cat-card-footer">' +
-            '<span class="badge-stock ' + b.cls + '">' + b.label + '</span>' +
-            '<a href="' + waLink(r) + '" target="_blank" rel="noopener" class="cat-card-wa">&#128172; Consultar</a>' +
-          '</div>' +
+        html += '<div class="cat-row">' +
+          '<div class="cat-row-code">' + r.codigo + '</div>' +
+          '<div class="cat-row-name">' + r.descripcion + '</div>' +
+          '<div class="cat-row-stk"><span class="badge-stock ' + b.cls + '">' + b.label + '</span></div>' +
+          '<div class="cat-row-wa"><a href="' + waLink(r) + '" target="_blank" rel="noopener" class="cat-card-wa">&#128172; Consultar</a></div>' +
         '</div>';
       });
       grid.innerHTML = html;
