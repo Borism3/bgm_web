@@ -39,11 +39,12 @@
 
   <link rel="canonical" href="https://www.bgmdiesel.com/" />
   <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
+  <link rel="preload" as="image" href="img/carrousel/img1.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="preload" as="image" href="img/carrousel/img1.jpg">
+
 
   <style>
     :root {
@@ -323,10 +324,12 @@
     <h2>Conocé <em>BGM Diesel</em></h2>
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carouselTrack">
-        <img src="img/carrousel/img1.jpg" alt="BGM Diesel instalaciones" fetchpriority="high" width="900" height="480">
-        <img src="img/carrousel/img2.jpeg" alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
-        <img src="img/carrousel/img3.jpg" alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
-        <img src="img/carrousel/img4.jpg" alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
+        <img src="img/carrousel/img1.jpg"  alt="BGM Diesel instalaciones" fetchpriority="high" width="900" height="480">
+        <img src="img/carrousel/img2.jpg"  alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
+        <img src="img/carrousel/img3.jpg"  alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
+        <img src="img/carrousel/img4.jpg"  alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
+        <img src="img/carrousel/img5.jpg"  alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
+        <img src="img/carrousel/img6.jpg"  alt="BGM Diesel instalaciones" loading="lazy" width="900" height="480">
       </div>
       <button class="carousel-btn prev" id="carouselPrev" aria-label="Imagen anterior">&#8249;</button>
       <button class="carousel-btn next" id="carouselNext" aria-label="Imagen siguiente">&#8250;</button>
@@ -336,6 +339,8 @@
       <button aria-label="Foto 2"></button>
       <button aria-label="Foto 3"></button>
       <button aria-label="Foto 4"></button>
+      <button aria-label="Foto 5"></button>
+      <button aria-label="Foto 6"></button>
     </div>
   </div>
 </section>
@@ -496,7 +501,7 @@
   // Carrusel
   (function() {
     var track = document.getElementById('carouselTrack');
-    var dots = document.getElementById('carouselDots').querySelectorAll('button');
+    var dots  = document.getElementById('carouselDots').querySelectorAll('button');
     var total = dots.length;
     var current = 0;
     var timer;
@@ -509,7 +514,6 @@
 
     function next() { goTo(current + 1); }
     function prev() { goTo(current - 1); }
-
     function startAuto() { timer = setInterval(next, 5000); }
     function resetAuto() { clearInterval(timer); startAuto(); }
 
