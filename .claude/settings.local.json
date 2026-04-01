@@ -11,7 +11,8 @@
       "Bash(convert --version)",
       "Bash(cwebp --version)",
       "Bash(ffmpeg -version)",
-      "Bash(curl -s -L \"https://repuestosgrasso.com.ar/\" --max-time 30)"
+      "Bash(curl -s -L \"https://repuestosgrasso.com.ar/\" --max-time 30)",
+      "Bash(ls c:/Proyectos/bgm_web/*.html)"
     ]
   }
 }

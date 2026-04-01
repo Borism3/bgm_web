@@ -112,8 +112,8 @@
 <body>
 
 <nav>
-  <a href="bgmdiesel.html" class="nav-logo-link"><img src="img/logo.jpg" alt="BGM Diesel" class="nav-logo-img" width="160" height="52"></a>
-  <a href="bgmdiesel.html" class="nav-back">&#8592; Volver al inicio</a>
+  <a href="index.html" class="nav-logo-link"><img src="img/logo.jpg" alt="BGM Diesel" class="nav-logo-img" width="160" height="52"></a>
+  <a href="index.html" class="nav-back">&#8592; Volver al inicio</a>
   <a class="nav-cta" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">&#128172; WhatsApp</a>
 </nav>
 
@@ -168,11 +168,6 @@
     var filtered    = [];
     var currentPage = 1;
 
-    function stockBadge(stock) {
-      if (stock > 15) return { cls: 'disponible', label: 'Disponible' };
-      return { cls: 'consultar', label: 'Consultar' };
-    }
-
     function waLink(r) {
       var msg = encodeURIComponent('Hola, quisiera consultar stock del repuesto ' + r.codigo + ' \u2013 ' + r.descripcion);
       return 'https://api.whatsapp.com/send?phone=5493415317707&text=' + msg;
@@ -192,11 +187,10 @@
       var page  = filtered.slice(start, start + PAGE_SIZE);
       var html  = header;
       page.forEach(function(r) {
-        var b = stockBadge(r.stock);
         html += '<div class="cat-row">' +
           '<div class="cat-row-code">' + r.codigo + '</div>' +
           '<div class="cat-row-name">' + r.descripcion + '</div>' +
-          '<div class="cat-row-stk"><span class="badge-stock ' + b.cls + '">' + b.label + '</span></div>' +
+          '<div class="cat-row-stk"><span class="badge-stock consultar">Consultar</span></div>' +
           '<div class="cat-row-wa"><a href="' + waLink(r) + '" target="_blank" rel="noopener" class="cat-card-wa">&#128172; Consultar</a></div>' +
         '</div>';
       });
