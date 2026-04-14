@@ -72,6 +72,10 @@
       <label>Columna Stock</label>
       <input type="number" id="colStk" value="3" min="1">
     </div>
+    <div class="col-cfg">
+      <label>Columna Detalle <span style="font-weight:400;color:#5a6f85">(opcional)</span></label>
+      <input type="number" id="colDet" value="4" min="1" placeholder="0 = no usar">
+    </div>
   </div>
 
   <label>Datos del Excel (pegá acá)</label>
@@ -110,6 +114,8 @@
     var colCod  = parseInt(document.getElementById('colCod').value, 10) - 1;
     var colDesc = parseInt(document.getElementById('colDesc').value, 10) - 1;
     var colStk  = parseInt(document.getElementById('colStk').value, 10) - 1;
+    var colDetRaw = parseInt(document.getElementById('colDet').value, 10);
+    var colDet  = (colDetRaw >= 1) ? colDetRaw - 1 : -1;
 
     var lines = raw.split(/\r?\n/).filter(function(l) { return l.trim(); });
 
@@ -137,7 +143,8 @@
       var esReemplazo = /reemplaz[ao]|reemp/i.test(desc);
 
       if (stk > 0 && !esVarios && !esReemplazo) {
-        items.push({ codigo: cod, descripcion: desc });
+        var det = (colDet >= 0 && cols[colDet]) ? cols[colDet].trim() : '';
+        items.push({ codigo: cod, descripcion: desc, detalle: det });
       } else {
         omitidos++;
       }
@@ -164,7 +171,9 @@
       var comma = idx < items.length - 1 ? ',' : '';
       var cod  = it.codigo.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
       var desc = it.descripcion.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-      out.push('  { codigo: "' + cod + '", descripcion: "' + desc + '" }' + comma);
+      var det  = (it.detalle || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+      var detalleStr = det ? ', detalle: "' + det + '"' : '';
+      out.push('  { codigo: "' + cod + '", descripcion: "' + desc + '"' + detalleStr + ' }' + comma);
     });
 
     out.push('];');

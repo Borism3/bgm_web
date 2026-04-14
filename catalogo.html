@@ -121,7 +121,8 @@
     .detail-info { padding: 2rem; }
     .detail-cat { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan); font-weight: 600; }
     .detail-code { font-size: 1rem; color: var(--gris); font-family: monospace; margin: 0.5rem 0 0.3rem; }
-    h1.detail-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.2rem; color: var(--navy); }
+    h1.detail-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.8rem; color: var(--navy); }
+    .detail-desc { font-size: 0.93rem; color: var(--suave); line-height: 1.7; margin-bottom: 1.2rem; padding: 1rem 1.2rem; background: var(--fondo); border-radius: 6px; border-left: 3px solid var(--cyan); display: none; }
     .detail-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
     .btn-wa { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; padding: 0.85rem 1.6rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; }
     .btn-wa:hover { background: #1da851; }
@@ -261,6 +262,7 @@
         <div class="detail-cat" id="detail-cat"></div>
         <div class="detail-code" id="detail-code"></div>
         <h1 class="detail-title" id="detail-title"></h1>
+        <div class="detail-desc" id="detail-desc"></div>
         <div class="detail-btns">
           <button class="btn-add-cart" id="detail-add-cart">&#43; Agregar al carrito</button>
           <a class="btn-wa" id="detail-wa" href="#" target="_blank" rel="noopener">
@@ -510,7 +512,7 @@
   function buildRows() {
     allRows = (window.CATALOGO || []).map(function(r) {
       var cat = inferCat(r.descripcion);
-      return { codigo: r.codigo, descripcion: r.descripcion, cat: cat };
+      return { codigo: r.codigo, descripcion: r.descripcion, detalle: r.detalle || '', cat: cat };
     });
   }
 
@@ -638,6 +640,13 @@
     document.getElementById('detail-cat').textContent = prod.cat.label;
     document.getElementById('detail-code').textContent = prod.codigo;
     document.getElementById('detail-title').textContent = prod.descripcion;
+    var descEl = document.getElementById('detail-desc');
+    if (prod.detalle) {
+      descEl.textContent = prod.detalle;
+      descEl.style.display = 'block';
+    } else {
+      descEl.style.display = 'none';
+    }
     document.getElementById('detail-breadcrumb-text').textContent = prod.codigo;
     document.getElementById('pageTitle').textContent = prod.codigo + ' \u2013 ' + prod.descripcion + ' | BGM Diesel';
 
