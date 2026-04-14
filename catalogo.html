@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catálogo de Repuestos – BGM Diesel Rosario</title>
+  <title id="pageTitle">Catálogo de Repuestos – BGM Diesel Rosario</title>
   <meta name="description" content="Catálogo de repuestos para camiones en Rosario. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo. Consultá stock al instante por WhatsApp. BGM Diesel." />
   <link rel="canonical" href="https://www.bgmdiesel.com/catalogo.html" />
   <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
@@ -15,9 +15,11 @@
   <style>
     :root {
       --navy:       #1a3060;
+      --navy2:      #253d7a;
       --navy-light: #253d7a;
       --blanco:     #ffffff;
       --fondo:      #f4f7fc;
+      --card:       #eaeff8;
       --rojo:       #cc1a1a;
       --rojo-vivo:  #e02020;
       --cyan:       #2ba8d8;
@@ -35,10 +37,17 @@
     nav { position: fixed; top: 0; width: 100%; z-index: 100; background: var(--navy); border-bottom: 3px solid var(--cyan); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 72px; box-shadow: 0 2px 20px rgba(26,48,96,0.35); }
     .nav-logo-link { display: flex; align-items: center; text-decoration: none; }
     .nav-logo-img { height: 52px; width: auto; background: #fff; border-radius: 5px; padding: 4px 8px; }
-    .nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
-    .nav-back:hover { color: #fff; }
-    .nav-cta { background: var(--rojo); color: #fff; padding: 0.75rem 1.3rem; min-height: 44px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.2s; display: inline-flex; align-items: center; }
-    .nav-cta:hover { background: var(--rojo-vivo); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a[aria-current] { color: #fff; }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; color: #fff; font-size: 1.6rem; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; padding: 0; line-height: 1; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; width: 100%; background: var(--navy); padding: 1rem 5vw 1.5rem; gap: 0; border-bottom: 3px solid var(--cyan); z-index: 99; }
+      .nav-links.open li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .nav-links.open a { padding: 0.85rem 0; font-size: 1rem; color: rgba(255,255,255,0.85); }
+      .nav-hamburger { display: flex; }
+    }
 
     /* HERO MINI */
     .cat-hero { background: linear-gradient(140deg, var(--navy) 0%, #1e3560 100%); padding: 110px 5vw 50px; border-bottom: 4px solid var(--rojo); }
@@ -52,36 +61,40 @@
 
     /* TOOLBAR */
     .catalogo-toolbar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
-    .catalogo-search { flex: 1; min-width: 220px; padding: 0.75rem 1rem; border: 1px solid #dde2ea; border-radius: 4px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--texto); background: #fff; outline: none; transition: border-color 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
-    .catalogo-search:focus { border-color: #32373c; }
-    .catalogo-count { font-size: 0.82rem; color: var(--gris); margin-left: auto; }
+    .catalogo-search { flex: 1; min-width: 220px; padding: 0.75rem 1rem 0.75rem 2.8rem; border: 1.5px solid #dde2ea; border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: var(--texto); background: #fff; outline: none; transition: border-color 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .catalogo-search:focus { border-color: var(--cyan); }
+    .search-wrap { position: relative; flex: 1; min-width: 220px; }
+    .search-icon { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--gris); pointer-events: none; }
+    .catalogo-count { font-size: 0.82rem; color: var(--gris); }
 
-    /* LISTA */
-    .cat-grid { display: flex; flex-direction: column; background: #fff; border: 1px solid #e5e9f0; border-radius: 6px; overflow: hidden; }
-    .cat-list-header { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 1rem; background: #3a5a9a; color: rgba(255,255,255,0.8); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
-    .cat-list-header .col-cod  { width: 120px; flex-shrink: 0; }
-    .cat-list-header .col-desc { flex: 1; }
-    .cat-list-header .col-stk  { width: 100px; flex-shrink: 0; text-align: center; }
-    .cat-list-header .col-wa   { width: 110px; flex-shrink: 0; }
-    .cat-row { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 1rem; border-top: 1px solid #f0f3f8; transition: background 0.15s; }
-    .cat-row:nth-child(even) { background: #f9fafc; }
-    .cat-row:hover { background: #eef3fb; }
-    .cat-row-code { width: 120px; flex-shrink: 0; font-size: 0.75rem; color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
-    .cat-row-name { flex: 1; font-size: 0.9rem; font-weight: 500; color: #1a1a1a; line-height: 1.4; }
-    .cat-row-stk  { width: 100px; flex-shrink: 0; text-align: center; }
-    .cat-row-wa   { width: 110px; flex-shrink: 0; }
-    .badge-stock { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 3px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .badge-stock.disponible { background: #e8f5e9; color: #2e7d32; }
-    .badge-stock.consultar  { background: #ddeeff; color: #2979cc; }
-    .cat-card-wa { display: inline-flex; align-items: center; gap: 0.3rem; background: #25d366; color: #fff; padding: 0.35rem 0.7rem; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 700; white-space: nowrap; transition: background 0.2s; }
-    .cat-card-wa:hover { background: #1ebe59; }
-    .catalogo-empty { text-align: center; padding: 3.5rem 1rem; color: var(--gris); font-size: 0.93rem; }
+    /* FILTRO CATEGORIAS */
+    .cat-filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .cat-filter-btn { padding: 0.4rem 0.9rem; border: 1.5px solid #d0d9e8; border-radius: 20px; background: #fff; color: var(--suave); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
+    .cat-filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .cat-filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    /* GRID */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.2rem; }
+    .product-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(26,48,96,0.07); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; text-decoration: none; color: inherit; }
+    .product-card:hover { box-shadow: 0 6px 24px rgba(26,48,96,0.14); transform: translateY(-2px); }
+    .card-img { background: linear-gradient(135deg, var(--fondo) 0%, var(--card) 100%); height: 130px; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .card-img svg { width: 60px; height: 60px; opacity: 0.25; color: var(--navy2); }
+    .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+    .card-cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan); font-weight: 600; }
+    .card-code { font-size: 0.72rem; color: var(--gris); font-family: monospace; }
+    .card-desc { font-size: 0.86rem; font-weight: 600; color: var(--navy); flex: 1; line-height: 1.3; margin-top: 0.1rem; }
+    .card-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+    .card-btn { flex: 1; text-align: center; background: var(--navy); color: #fff; text-decoration: none; padding: 0.5rem 0.4rem; border-radius: 5px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; transition: background 0.2s; }
+    .card-btn:hover { background: var(--rojo); }
+    .card-btn-wa { display: flex; align-items: center; justify-content: center; background: #25d366; color: #fff; text-decoration: none; padding: 0.5rem 0.6rem; border-radius: 5px; transition: background 0.2s; flex-shrink: 0; }
+    .card-btn-wa:hover { background: #1da851; }
+    .card-btn-wa svg { width: 16px; height: 16px; fill: #fff; }
 
     /* PAGINACION */
     .cat-pagination { display: flex; align-items: center; justify-content: center; gap: 0.4rem; margin-top: 2rem; flex-wrap: wrap; }
-    .cat-pagination button { min-width: 38px; height: 38px; padding: 0 0.6rem; border: 1px solid #dde2ea; border-radius: 4px; background: #fff; color: #32373c; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
-    .cat-pagination button:hover { border-color: #32373c; background: #f5f5f5; }
-    .cat-pagination button.active { background: #32373c; color: #fff; border-color: #32373c; }
+    .cat-pagination button { min-width: 38px; height: 38px; padding: 0 0.6rem; border: 1.5px solid #dde2ea; border-radius: 4px; background: #fff; color: var(--navy); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
+    .cat-pagination button:hover { border-color: var(--navy); background: var(--fondo); }
+    .cat-pagination button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
     .cat-pagination button:disabled { opacity: 0.35; cursor: default; }
     .cat-pagination .pag-sep { color: #aaa; font-size: 0.85rem; padding: 0 0.2rem; }
 
@@ -92,51 +105,135 @@
     .btn-primary { background: var(--rojo); color: #fff; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s; white-space: nowrap; }
     .btn-primary:hover { background: var(--rojo-vivo); }
 
+    /* EMPTY */
+    .catalogo-empty { text-align: center; padding: 3.5rem 1rem; color: var(--gris); font-size: 0.93rem; }
+
+    /* DETALLE */
+    #view-detail { display: none; }
+    .detail-wrap { max-width: 900px; margin: 0 auto; padding: 0 5vw 4rem; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.6); padding: 0.7rem 0; }
+    .breadcrumb a { color: var(--cyan); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 0.4rem; }
+    .detail-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 24px rgba(26,48,96,0.1); overflow: hidden; margin-top: 1.5rem; }
+    .detail-img { background: linear-gradient(135deg, var(--fondo) 0%, var(--card) 100%); height: 180px; display: flex; align-items: center; justify-content: center; }
+    .detail-img svg { width: 90px; height: 90px; opacity: 0.2; color: var(--navy2); }
+    .detail-info { padding: 2rem; }
+    .detail-cat { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan); font-weight: 600; }
+    .detail-code { font-size: 1rem; color: var(--gris); font-family: monospace; margin: 0.5rem 0 0.3rem; }
+    h1.detail-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.2rem; color: var(--navy); }
+    .detail-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; padding: 0.85rem 1.6rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; }
+    .btn-wa:hover { background: #1da851; }
+    .btn-wa svg { width: 20px; height: 20px; fill: #fff; }
+    .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--fondo); color: var(--navy); padding: 0.85rem 1.4rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1.5px solid #d0d9e8; transition: background 0.2s; cursor: pointer; }
+    .btn-back:hover { background: var(--card); }
+
     /* FOOTER */
     footer { background: var(--navy); border-top: 3px solid var(--rojo); padding: 2rem 5vw; text-align: center; }
     .footer-bottom { font-size: 0.77rem; color: rgba(255,255,255,0.55); }
 
     /* FLOAT WA */
-    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 200; background: #25d366; color: #fff; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.2s; }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 200; background: #25d366; color: #fff; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.2s; }
     .wa-float:hover { transform: scale(1.1); }
 
     @media (max-width: 600px) {
-      .cat-list-header { display: none; }
-      .cat-row { flex-wrap: wrap; gap: 0.4rem; padding: 0.8rem 0.8rem; }
-      .cat-row-code { width: auto; font-size: 0.7rem; }
-      .cat-row-name { width: 100%; flex: none; font-size: 0.88rem; }
-      .cat-row-stk, .cat-row-wa { width: auto; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 0.8rem; }
+      .card-img { height: 100px; }
+      .detail-btns { flex-direction: column; }
     }
+
+    /* CARRITO – botón flotante */
+    .cart-float { position: fixed; bottom: 100px; right: 28px; z-index: 200; background: var(--navy); color: #fff; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(26,48,96,0.4); transition: transform 0.2s; }
+    .cart-float:hover { transform: scale(1.1); }
+    .cart-float svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cart-float-badge { position: absolute; top: 2px; right: 2px; background: var(--rojo); color: #fff; font-size: 0.6rem; font-weight: 800; min-width: 18px; height: 18px; border-radius: 9px; padding: 0 3px; display: none; align-items: center; justify-content: center; line-height: 1; }
+    .cart-float-badge.visible { display: flex; }
+
+    /* TOAST */
+    .cart-toast { position: fixed; bottom: 104px; right: 100px; background: #1a7a3c; color: #fff; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; font-family: 'Barlow', sans-serif; z-index: 500; opacity: 0; transform: translateY(8px); transition: opacity 0.22s, transform 0.22s; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.22); }
+    .cart-toast.show { opacity: 1; transform: translateY(0); }
+
+    /* CARRITO – tarjetas */
+    .card-btn-cart { flex: 1; background: var(--rojo); color: #fff; border: none; padding: 0.5rem 0.4rem; border-radius: 5px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; font-family: 'Barlow', sans-serif; }
+    .card-btn-cart:hover { background: var(--rojo-vivo); }
+    .card-btn-cart.en-carrito { background: #1a7a3c; }
+    .card-btn-cart.en-carrito:hover { background: #145e2e; }
+
+    /* CARRITO – detalle */
+    .btn-add-cart { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--navy); color: #fff; padding: 0.85rem 1.6rem; border-radius: 6px; font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer; transition: background 0.2s; font-family: 'Barlow', sans-serif; }
+    .btn-add-cart:hover { background: var(--rojo); }
+    .btn-add-cart.en-carrito { background: #1a7a3c; }
+    .btn-add-cart.en-carrito:hover { background: #145e2e; }
+
+    /* OVERLAY */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* DRAWER */
+    .cart-drawer { position: fixed; top: 0; right: 0; width: 380px; max-width: 100vw; height: 100vh; background: #fff; z-index: 400; transform: translateX(100%); transition: transform 0.28s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; box-shadow: -4px 0 32px rgba(26,48,96,0.18); }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header { background: var(--navy); color: #fff; padding: 1.1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 3px solid var(--cyan); }
+    .cart-header h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cart-close { background: none; border: none; color: rgba(255,255,255,0.75); cursor: pointer; font-size: 1.4rem; line-height: 1; padding: 0.2rem; transition: color 0.15s; }
+    .cart-close:hover { color: #fff; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 0.5rem 1.2rem; }
+    .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--gris); font-size: 0.9rem; line-height: 1.7; }
+    .cart-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.85rem 0; border-bottom: 1px solid #f0f3f8; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-code { font-size: 0.7rem; color: var(--gris); font-family: monospace; font-weight: 700; text-transform: uppercase; }
+    .cart-item-desc { font-size: 0.83rem; font-weight: 600; color: var(--navy); line-height: 1.3; margin-top: 0.15rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
+    .cart-item-qty { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+    .qty-btn { width: 26px; height: 26px; border: 1.5px solid #d0d9e8; border-radius: 4px; background: #fff; color: var(--navy); font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; line-height: 1; padding: 0; }
+    .qty-btn:hover { border-color: var(--navy); background: var(--fondo); }
+    .qty-val { min-width: 22px; text-align: center; font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+    .cart-item-remove { background: none; border: none; color: #ccc; cursor: pointer; font-size: 1rem; padding: 0.2rem 0.3rem; transition: color 0.15s; flex-shrink: 0; }
+    .cart-item-remove:hover { color: var(--rojo); }
+    .cart-footer { padding: 1.1rem 1.2rem; border-top: 2px solid #f0f3f8; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .cart-summary { font-size: 0.82rem; color: var(--gris); text-align: center; }
+    .btn-send-order { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #25d366; color: #fff; padding: 0.9rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.92rem; border: none; cursor: pointer; width: 100%; transition: background 0.2s; font-family: 'Barlow', sans-serif; letter-spacing: 0.03em; }
+    .btn-send-order:hover { background: #1da851; }
+    .btn-send-order svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+    .btn-clear-cart { background: none; border: 1.5px solid #d0d9e8; color: var(--gris); padding: 0.55rem; border-radius: 5px; font-size: 0.78rem; cursor: pointer; width: 100%; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
+    .btn-clear-cart:hover { border-color: var(--rojo); color: var(--rojo); }
   </style>
 </head>
 <body>
 
 <nav>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#marcas">Marcas</a></li>
+    <li><a href="index.html#productos">Productos</a></li>
+    <li><a href="catalogo.html" aria-current="page">Catálogo</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
   <a href="index.html" class="nav-logo-link"><img src="img/logo.jpg" alt="BGM Diesel" class="nav-logo-img" width="160" height="52"></a>
-  <a href="index.html" class="nav-back">&#8592; Volver al inicio</a>
-  <a class="nav-cta" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener">&#128172; WhatsApp</a>
 </nav>
 
-<div class="cat-hero">
+<!-- HERO -->
+<div class="cat-hero" id="cat-hero">
   <div class="label">Stock disponible</div>
   <h1>Catálogo de <em>repuestos</em></h1>
   <p>Buscá por código o descripción. Consultá disponibilidad al instante por WhatsApp.</p>
 </div>
 
+<!-- VISTA GRILLA -->
+<div id="view-grid">
 <main>
   <div class="cat-body">
     <div class="catalogo-toolbar">
-      <input class="catalogo-search" id="catSearch" type="search" placeholder="Buscar por código o descripción...">
+      <div class="search-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="catalogo-search" id="catSearch" type="search" placeholder="Buscar por código o descripción...">
+      </div>
       <span class="catalogo-count" id="catCount"></span>
     </div>
 
-    <div class="cat-grid" id="catBody">
-      <div class="cat-list-header">
-        <span class="col-cod">Código</span>
-        <span class="col-desc">Descripción</span>
-        <span class="col-stk">Disponibilidad</span>
-        <span class="col-wa"></span>
-      </div>
+    <div class="cat-filter-bar" id="catFilterBar"></div>
+
+    <div class="product-grid" id="catBody">
       <div class="catalogo-empty">Cargando catálogo...</div>
     </div>
     <div class="cat-pagination" id="catPagination"></div>
@@ -148,100 +245,478 @@
     </div>
   </div>
 </main>
+</div>
+
+<!-- VISTA DETALLE -->
+<div id="view-detail">
+  <div style="background: var(--navy); padding: 0.7rem 5vw;">
+    <div class="breadcrumb">
+      <a href="catalogo.html">Catálogo</a><span>›</span><span id="detail-breadcrumb-text"></span>
+    </div>
+  </div>
+  <div class="detail-wrap">
+    <div class="detail-card">
+      <div class="detail-img" id="detail-img"></div>
+      <div class="detail-info">
+        <div class="detail-cat" id="detail-cat"></div>
+        <div class="detail-code" id="detail-code"></div>
+        <h1 class="detail-title" id="detail-title"></h1>
+        <div class="detail-btns">
+          <button class="btn-add-cart" id="detail-add-cart">&#43; Agregar al carrito</button>
+          <a class="btn-wa" id="detail-wa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C13 4 4 13 4 24c0 3.6 1 7 2.7 9.9L4 44l10.4-2.7C17 43 20.4 44 24 44c11 0 20-9 20-20S35 4 24 4zm8.8 27.2c-.5-.2-2.8-1.4-3.2-1.5-.4-.2-.7-.2-1 .2-.3.5-1.2 1.5-1.4 1.8-.3.3-.5.3-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.4-2.8-2.6-3.2-.3-.5 0-.7.2-.9.2-.2.5-.5.7-.7.2-.3.3-.5.4-.8.2-.3.1-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.6 1.6-1.6 3.8s1.6 4.4 1.9 4.7c.2.3 3.2 4.9 7.8 6.9 1.1.5 1.9.7 2.6.9 1.1.3 2.1.3 2.9.2.9-.1 2.8-1.1 3.2-2.2.4-1.1.4-2 .3-2.2-.2-.2-.5-.3-1-.5z"/></svg>
+            Consultar por WhatsApp
+          </a>
+          <button class="btn-back" id="detail-back-btn">&#8592; Volver al catálogo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Carrito de pedido">
+  <div class="cart-header">
+    <h2>&#128722; Tu pedido</h2>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">&#10005;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-summary" id="cartSummary"></div>
+    <button class="btn-send-order" id="btnSendOrder">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4C13 4 4 13 4 24c0 3.6 1 7 2.7 9.9L4 44l10.4-2.7C17 43 20.4 44 24 44c11 0 20-9 20-20S35 4 24 4zm8.8 27.2c-.5-.2-2.8-1.4-3.2-1.5-.4-.2-.7-.2-1 .2-.3.5-1.2 1.5-1.4 1.8-.3.3-.5.3-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.4-2.8-2.6-3.2-.3-.5 0-.7.2-.9.2-.2.5-.5.7-.7.2-.3.3-.5.4-.8.2-.3.1-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.6 1.6-1.6 3.8s1.6 4.4 1.9 4.7c.2.3 3.2 4.9 7.8 6.9 1.1.5 1.9.7 2.6.9 1.1.3 2.1.3 2.9.2.9-.1 2.8-1.1 3.2-2.2.4-1.1.4-2 .3-2.2-.2-.2-.5-.3-1-.5z"/></svg>
+      Enviar pedido por WhatsApp
+    </button>
+    <button class="btn-clear-cart" id="btnClearCart">Vaciar carrito</button>
+  </div>
+</div>
 
 <footer>
   <div class="footer-bottom">© 2026 B.G.M Diesel · Repuestos para camiones · Rosario, Santa Fe · Argentina</div>
 </footer>
 
-<a class="wa-float" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener" aria-label="WhatsApp BGM Diesel">&#128172;</a>
+<button class="cart-float" id="cartFloatBtn" aria-label="Ver carrito">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-float-badge" id="cartBadge"></span>
+</button>
+
+<div class="cart-toast" id="cartToast"></div>
+
+<a class="wa-float" href="https://api.whatsapp.com/send?text=Hola%20quisiera%20consultar%20sobre%20&phone=5493415317707" target="_blank" rel="noopener" aria-label="WhatsApp BGM Diesel"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32" fill="#fff"><path d="M24 4C13 4 4 13 4 24c0 3.6 1 7 2.7 9.9L4 44l10.4-2.7C17 43 20.4 44 24 44c11 0 20-9 20-20S35 4 24 4zm0 36c-3.1 0-6.1-.8-8.7-2.4l-.6-.4-6.2 1.6 1.6-6-.4-.6C8.8 30.1 8 27.1 8 24c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16zm8.8-11.8c-.5-.2-2.8-1.4-3.2-1.5-.4-.2-.7-.2-1 .2-.3.5-1.2 1.5-1.4 1.8-.3.3-.5.3-1 .1-.5-.2-2-.7-3.8-2.3-1.4-1.2-2.4-2.8-2.6-3.2-.3-.5 0-.7.2-.9.2-.2.5-.5.7-.7.2-.3.3-.5.4-.8.2-.3.1-.6 0-.8-.1-.2-1-2.4-1.4-3.3-.4-.9-.7-.7-1-.7h-.8c-.3 0-.8.1-1.2.6-.4.5-1.6 1.6-1.6 3.8s1.6 4.4 1.9 4.7c.2.3 3.2 4.9 7.8 6.9 1.1.5 1.9.7 2.6.9 1.1.3 2.1.3 2.9.2.9-.1 2.8-1.1 3.2-2.2.4-1.1.4-2 .3-2.2-.2-.2-.5-.3-1-.5z"/></svg></a>
 
 <script src="catalogo.js"></script>
 <script>
-  (function() {
-    var search     = document.getElementById('catSearch');
-    var countEl    = document.getElementById('catCount');
-    var grid       = document.getElementById('catBody');
-    var pagination = document.getElementById('catPagination');
+(function () {
 
-    var PAGE_SIZE   = 20;
-    var allRows     = [];
-    var filtered    = [];
-    var currentPage = 1;
+  // ── SVG icons ───────────────────────────────────────────────────────────────
+  var ICON_DEFAULT = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="8" y="8" width="48" height="48" rx="6"/><line x1="16" y1="22" x2="48" y2="22"/><line x1="21" y1="32" x2="43" y2="32"/><line x1="26" y1="42" x2="38" y2="42"/></svg>';
+  var ICON_MOTOR   = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="10" y="20" width="44" height="24" rx="4"/><rect x="18" y="12" width="10" height="10" rx="2"/><rect x="36" y="12" width="10" height="10" rx="2"/><line x1="10" y1="32" x2="4" y2="32"/><line x1="54" y1="32" x2="60" y2="32"/></svg>';
+  var ICON_FILTRO  = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="12"/><circle cx="32" cy="32" r="4"/></svg>';
+  var ICON_FRENO   = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="10"/><line x1="32" y1="10" x2="32" y2="54"/><line x1="10" y1="32" x2="54" y2="32"/></svg>';
+  var ICON_ELECTR  = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><polyline points="12,36 26,20 32,30 42,16 52,30"/><line x1="12" y1="44" x2="52" y2="44"/></svg>';
+  var ICON_RETEN   = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="8" y="24" width="48" height="16" rx="4"/><circle cx="20" cy="32" r="4"/><circle cx="44" cy="32" r="4"/></svg>';
+  var CAT_ICONS = { motor: ICON_MOTOR, filtros: ICON_FILTRO, frenos: ICON_FRENO, electrico: ICON_ELECTR, retenes: ICON_RETEN };
 
-    function waLink(r) {
-      var msg = encodeURIComponent('Hola, quisiera consultar stock del repuesto ' + r.codigo + ' \u2013 ' + r.descripcion);
-      return 'https://api.whatsapp.com/send?phone=5493415317707&text=' + msg;
-    }
+  // ── categorías ──────────────────────────────────────────────────────────────
+  var CATS = [
+    { slug:'filtros',       label:'Filtros',             re:/FILTRO/ },
+    { slug:'motor',         label:'Motor',               re:/PISTON|PIST\u00d3N|ANILLO|SEGMENTO|JUNTA|V\u00c1LVULA|VALVULA|COJINETE|CIG\u00dc\u00c9\u00d1AL|CIGUENAL|CAMISA|BIELA|BLOCK|TAPA DE MOTOR|COLECTOR|TURBO|VOLANTE MOTOR/ },
+    { slug:'frenos',        label:'Frenos y Suspensi\u00f3n', re:/FRENO|PASTILLA|TAMBOR|MORDAZA|CALIPER|SUSPENSION|SUSPENSI\u00d3N|AMORTIGUADOR|RESORTE|BALLESTA|BARRA ESTAB|ROTULA|R\u00d3TULA|BUJE|MU\u00d1ON/ },
+    { slug:'embrague',      label:'Embrague',            re:/EMBRAGUE|CLUTCH|CRAPO|CRAPODINA|PLATO DE PRESION|DISCO DE EMBRAGUE/ },
+    { slug:'transmision',   label:'Transmisi\u00f3n',    re:/CAJA DE VEL|CAJA DE CAM|TRANSMISION|TRANSMISI\u00d3N|CARD\u00c1N|CARDAN|CORONA|DIFERENCIAL|SEMIEJES|PLANETARIO/ },
+    { slug:'refrigeracion', label:'Refrigeraci\u00f3n',  re:/RADIADOR|TERMOSTATO|ENFRIADOR|REFRIGER|BOMBA DE AGUA|TAPA RADIADOR|MANGUERA/ },
+    { slug:'inyeccion',     label:'Inyecci\u00f3n',      re:/INYECTOR|TOBERA|INYECCION|INYECCI\u00d3N|COMMON RAIL|BOMBA INYECTORA|REGULADOR DE PRESION/ },
+    { slug:'electrico',     label:'El\u00e9ctrico',      re:/ALTERNADOR|ARRANQUE|SENSOR|ELECTR|CABLE|BOBINA|RELAY|FUSIBLE/ },
+    { slug:'retenes',       label:'Retenes y Juntas',    re:/RETEN|RET\u00c9N|SELLO|JUNTA T\u00d3RICA|O-RING/ },
+    { slug:'direccion',     label:'Direcci\u00f3n',      re:/DIRECCI|COLUMNA|CAJA DE DIRECCION|BOMBA DE DIREC/ },
+  ];
 
-    function renderPage() {
-      var header = '<div class="cat-list-header"><span class="col-cod">C\u00f3digo</span><span class="col-desc">Descripci\u00f3n</span><span class="col-stk">Disponibilidad</span><span class="col-wa"></span></div>';
-      if (!filtered.length) {
-        grid.innerHTML = header + '<div class="catalogo-empty">No se encontraron repuestos.</div>';
-        pagination.innerHTML = '';
-        countEl.textContent = '0 resultados';
-        return;
-      }
-      var totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-      if (currentPage > totalPages) currentPage = 1;
-      var start = (currentPage - 1) * PAGE_SIZE;
-      var page  = filtered.slice(start, start + PAGE_SIZE);
-      var html  = header;
-      page.forEach(function(r) {
-        html += '<div class="cat-row">' +
-          '<div class="cat-row-code">' + r.codigo + '</div>' +
-          '<div class="cat-row-name">' + r.descripcion + '</div>' +
-          '<div class="cat-row-stk"><span class="badge-stock consultar">Consultar</span></div>' +
-          '<div class="cat-row-wa"><a href="' + waLink(r) + '" target="_blank" rel="noopener" class="cat-card-wa">&#128172; Consultar</a></div>' +
-        '</div>';
-      });
-      grid.innerHTML = html;
-      countEl.textContent = filtered.length + ' resultado' + (filtered.length !== 1 ? 's' : '');
-      renderPagination(totalPages);
-    }
+  function inferCat(desc) {
+    var u = desc.toUpperCase();
+    for (var i = 0; i < CATS.length; i++) if (CATS[i].re.test(u)) return CATS[i];
+    return { slug: 'otros', label: 'Otros' };
+  }
 
-    function renderPagination(totalPages) {
-      if (totalPages <= 1) { pagination.innerHTML = ''; return; }
-      var html = '<button id="pagPrev"' + (currentPage === 1 ? ' disabled' : '') + '>&#8249;</button>';
-      var pages = [1];
-      if (currentPage - 1 > 2) pages.push('...');
-      for (var p = Math.max(2, currentPage - 1); p <= Math.min(totalPages - 1, currentPage + 1); p++) pages.push(p);
-      if (currentPage + 1 < totalPages - 1) pages.push('...');
-      if (totalPages > 1) pages.push(totalPages);
-      pages.forEach(function(p) {
-        if (p === '...') {
-          html += '<span class="pag-sep">&#8230;</span>';
-        } else {
-          html += '<button data-p="' + p + '"' + (p === currentPage ? ' class="active"' : '') + '>' + p + '</button>';
-        }
-      });
-      html += '<button id="pagNext"' + (currentPage === totalPages ? ' disabled' : '') + '>&#8250;</button>';
-      pagination.innerHTML = html;
-      pagination.querySelector('#pagPrev').addEventListener('click', function() { goTo(currentPage - 1); });
-      pagination.querySelector('#pagNext').addEventListener('click', function() { goTo(currentPage + 1); });
-      pagination.querySelectorAll('button[data-p]').forEach(function(btn) {
-        btn.addEventListener('click', function() { goTo(parseInt(btn.dataset.p)); });
-      });
-    }
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-    function goTo(page) {
-      currentPage = page;
-      renderPage();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  function productUrl(codigo) {
+    return 'catalogo.html?p=' + encodeURIComponent(codigo);
+  }
 
-    function applyFilter() {
-      var q = search.value.toLowerCase().trim();
-      filtered = q ? allRows.filter(function(r) {
-        return (r.codigo + ' ' + r.descripcion).toLowerCase().includes(q);
-      }) : allRows.slice();
-      currentPage = 1;
-      renderPage();
-    }
+  // ── carrito ─────────────────────────────────────────────────────────────────
+  var STORAGE_KEY = 'bgm_carrito';
+  var cart = [];
 
-    search.addEventListener('input', applyFilter);
-    allRows  = window.CATALOGO || [];
-    filtered = allRows.slice();
+  function cartLoad() {
+    try { cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { cart = []; }
+  }
+
+  function cartSave() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch(e) {}
+  }
+
+  function cartFind(codigo) {
+    for (var i = 0; i < cart.length; i++) if (cart[i].codigo === codigo) return i;
+    return -1;
+  }
+
+  function cartAdd(codigo, descripcion) {
+    var idx = cartFind(codigo);
+    if (idx >= 0) { cart[idx].qty += 1; cartShowToast('\u2713 Cantidad actualizada'); }
+    else { cart.push({ codigo: codigo, descripcion: descripcion, qty: 1 }); cartShowToast('\u2713 Agregado al carrito'); }
+    cartSave();
+    cartRenderBadge();
+    cartRenderDrawer();
+  }
+
+  function cartRemove(codigo) {
+    var idx = cartFind(codigo);
+    if (idx >= 0) { cart.splice(idx, 1); }
+    cartSave();
+    cartRenderBadge();
+    cartRenderDrawer();
+    renderPage(); // refrescar estado botones en grilla
+    syncDetailCartBtn();
+  }
+
+  function cartSetQty(codigo, qty) {
+    var idx = cartFind(codigo);
+    if (idx < 0) return;
+    if (qty < 1) { cartRemove(codigo); return; }
+    cart[idx].qty = qty;
+    cartSave();
+    cartRenderBadge();
+    cartRenderDrawer();
+  }
+
+  function cartClear() {
+    cart = [];
+    cartSave();
+    cartRenderBadge();
+    cartRenderDrawer();
     renderPage();
+    syncDetailCartBtn();
+  }
+
+  function cartTotal() {
+    return cart.reduce(function(sum, item) { return sum + item.qty; }, 0);
+  }
+
+  function cartRenderBadge() {
+    var total = cartTotal();
+    var badge = document.getElementById('cartBadge');
+    if (!badge) return;
+    badge.textContent = total > 99 ? '99+' : total;
+    badge.classList.toggle('visible', total > 0);
+  }
+
+  var toastTimer = null;
+  function cartShowToast(msg) {
+    var el = document.getElementById('cartToast');
+    if (!el) return;
+    clearTimeout(toastTimer);
+    el.textContent = msg;
+    el.classList.add('show');
+    toastTimer = setTimeout(function() { el.classList.remove('show'); }, 2400);
+  }
+
+  function cartRenderDrawer() {
+    var itemsEl  = document.getElementById('cartItems');
+    var footerEl = document.getElementById('cartFooter');
+    var summaryEl = document.getElementById('cartSummary');
+    if (!itemsEl) return;
+
+    if (!cart.length) {
+      itemsEl.innerHTML = '<div class="cart-empty">Tu carrito est\u00e1 vac\u00edo.<br>Agr\u00e9ga repuestos desde el cat\u00e1logo.</div>';
+      footerEl.style.display = 'none';
+      return;
+    }
+
+    var html = '';
+    cart.forEach(function(item) {
+      html += '<div class="cart-item">' +
+        '<div class="cart-item-info">' +
+          '<div class="cart-item-code">' + esc(item.codigo) + '</div>' +
+          '<div class="cart-item-desc">' + esc(item.descripcion) + '</div>' +
+        '</div>' +
+        '<div class="cart-item-qty">' +
+          '<button class="qty-btn" data-action="dec" data-codigo="' + esc(item.codigo) + '">&#8722;</button>' +
+          '<span class="qty-val">' + item.qty + '</span>' +
+          '<button class="qty-btn" data-action="inc" data-codigo="' + esc(item.codigo) + '">&#43;</button>' +
+        '</div>' +
+        '<button class="cart-item-remove" data-action="remove" data-codigo="' + esc(item.codigo) + '" title="Quitar">&#10005;</button>' +
+      '</div>';
+    });
+    itemsEl.innerHTML = html;
+
+    var total = cartTotal();
+    summaryEl.textContent = total + ' art\u00edculo' + (total !== 1 ? 's' : '') + ' en el pedido';
+    footerEl.style.display = '';
+
+    // eventos inline de qty y remove
+    itemsEl.querySelectorAll('[data-action]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var codigo = btn.dataset.codigo;
+        var action = btn.dataset.action;
+        var idx = cartFind(codigo);
+        if (idx < 0) return;
+        if (action === 'inc') cartSetQty(codigo, cart[idx].qty + 1);
+        else if (action === 'dec') cartSetQty(codigo, cart[idx].qty - 1);
+        else if (action === 'remove') cartRemove(codigo);
+      });
+    });
+  }
+
+  function cartBuildWaMessage() {
+    var lines = ['Hola! Quisiera consultar el siguiente pedido:\n'];
+    cart.forEach(function(item, i) {
+      lines.push((i + 1) + '. [' + item.codigo + '] ' + item.descripcion + (item.qty > 1 ? ' (x' + item.qty + ')' : ''));
+    });
+    lines.push('\nMuchas gracias.');
+    return lines.join('\n');
+  }
+
+  // ── drawer open/close ───────────────────────────────────────────────────────
+  function cartOpen() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cartClose() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── DOM refs grilla ─────────────────────────────────────────────────────────
+  var viewGrid   = document.getElementById('view-grid');
+  var viewDetail = document.getElementById('view-detail');
+  var catHero    = document.getElementById('cat-hero');
+  var searchEl   = document.getElementById('catSearch');
+  var countEl    = document.getElementById('catCount');
+  var gridEl     = document.getElementById('catBody');
+  var pagEl      = document.getElementById('catPagination');
+  var filterBar  = document.getElementById('catFilterBar');
+
+  var PAGE_SIZE   = 24;
+  var allRows     = [];
+  var filtered    = [];
+  var currentPage = 1;
+  var activeSlug  = 'todos';
+
+  function buildRows() {
+    allRows = (window.CATALOGO || []).map(function(r) {
+      var cat = inferCat(r.descripcion);
+      return { codigo: r.codigo, descripcion: r.descripcion, cat: cat };
+    });
+  }
+
+  function applyFilter() {
+    var q = (searchEl.value || '').toLowerCase().trim();
+    filtered = allRows.filter(function(r) {
+      var matchCat  = activeSlug === 'todos' || r.cat.slug === activeSlug;
+      var matchText = !q || (r.codigo + ' ' + r.descripcion).toLowerCase().indexOf(q) !== -1;
+      return matchCat && matchText;
+    });
+    currentPage = 1;
+    renderPage();
+  }
+
+  function renderPage() {
+    if (!filtered.length) {
+      gridEl.innerHTML = '<div class="catalogo-empty">No se encontraron repuestos.</div>';
+      pagEl.innerHTML  = '';
+      countEl.textContent = '0 resultados';
+      return;
+    }
+    var total = filtered.length;
+    var totalPages = Math.ceil(total / PAGE_SIZE);
+    if (currentPage > totalPages) currentPage = 1;
+    var start = (currentPage - 1) * PAGE_SIZE;
+    var page  = filtered.slice(start, start + PAGE_SIZE);
+    var html  = '';
+    page.forEach(function(r) {
+      var icon     = CAT_ICONS[r.cat.slug] || ICON_DEFAULT;
+      var inCart   = cartFind(r.codigo) >= 0;
+      var cartLabel = inCart ? '\u2713 En carrito' : '+ Carrito';
+      var cartClass = inCart ? 'card-btn-cart en-carrito' : 'card-btn-cart';
+      html += '<a class="product-card" href="' + esc(productUrl(r.codigo)) + '">' +
+        '<div class="card-img">' + icon + '</div>' +
+        '<div class="card-body">' +
+          '<span class="card-cat">' + esc(r.cat.label) + '</span>' +
+          '<span class="card-code">' + esc(r.codigo) + '</span>' +
+          '<div class="card-desc">' + esc(r.descripcion) + '</div>' +
+          '<div class="card-actions">' +
+            '<span class="card-btn">Ver detalle</span>' +
+            '<button class="' + cartClass + '" ' +
+              'data-codigo="' + esc(r.codigo) + '" ' +
+              'data-desc="' + esc(r.descripcion) + '" ' +
+              'onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.codigo,this.dataset.desc)">' +
+              cartLabel +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    });
+    gridEl.innerHTML = html;
+    countEl.textContent = total + ' resultado' + (total !== 1 ? 's' : '');
+    renderPagination(totalPages);
+  }
+
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) { pagEl.innerHTML = ''; return; }
+    var html = '<button id="pagPrev"' + (currentPage === 1 ? ' disabled' : '') + '>&#8249;</button>';
+    var pages = [1];
+    if (currentPage - 1 > 2) pages.push('...');
+    for (var p = Math.max(2, currentPage - 1); p <= Math.min(totalPages - 1, currentPage + 1); p++) pages.push(p);
+    if (currentPage + 1 < totalPages - 1) pages.push('...');
+    if (totalPages > 1) pages.push(totalPages);
+    pages.forEach(function(p) {
+      if (p === '...') html += '<span class="pag-sep">&#8230;</span>';
+      else html += '<button data-p="' + p + '"' + (p === currentPage ? ' class="active"' : '') + '>' + p + '</button>';
+    });
+    html += '<button id="pagNext"' + (currentPage === totalPages ? ' disabled' : '') + '>&#8250;</button>';
+    pagEl.innerHTML = html;
+    pagEl.querySelector('#pagPrev').addEventListener('click', function() { goTo(currentPage - 1); });
+    pagEl.querySelector('#pagNext').addEventListener('click', function() { goTo(currentPage + 1); });
+    pagEl.querySelectorAll('button[data-p]').forEach(function(btn) {
+      btn.addEventListener('click', function() { goTo(parseInt(btn.dataset.p)); });
+    });
+  }
+
+  function goTo(page) {
+    currentPage = page;
+    renderPage();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderFilterBar() {
+    var counts = { todos: allRows.length };
+    CATS.forEach(function(c) { counts[c.slug] = 0; });
+    counts['otros'] = 0;
+    allRows.forEach(function(r) { counts[r.cat.slug] = (counts[r.cat.slug] || 0) + 1; });
+    var html = '<button class="cat-filter-btn active" data-slug="todos">Todos (' + allRows.length + ')</button>';
+    CATS.forEach(function(c) {
+      if (counts[c.slug]) html += '<button class="cat-filter-btn" data-slug="' + c.slug + '">' + c.label + ' (' + counts[c.slug] + ')</button>';
+    });
+    if (counts['otros']) html += '<button class="cat-filter-btn" data-slug="otros">Otros (' + counts['otros'] + ')</button>';
+    filterBar.innerHTML = html;
+    filterBar.querySelectorAll('.cat-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBar.querySelectorAll('.cat-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        activeSlug = btn.dataset.slug;
+        applyFilter();
+      });
+    });
+  }
+
+  // ── vista detalle ──────────────────────────────────────────────────────────
+  var detailProd = null;
+
+  function syncDetailCartBtn() {
+    var btn = document.getElementById('detail-add-cart');
+    if (!btn || !detailProd) return;
+    var inCart = cartFind(detailProd.codigo) >= 0;
+    btn.textContent = inCart ? '\u2713 Agregado al carrito' : '+ Agregar al carrito';
+    btn.classList.toggle('en-carrito', inCart);
+  }
+
+  function showDetail(codigo) {
+    var prod = null;
+    for (var i = 0; i < allRows.length; i++) {
+      if (allRows[i].codigo === codigo) { prod = allRows[i]; break; }
+    }
+    if (!prod) { showGrid(); return; }
+    detailProd = prod;
+
+    var icon = CAT_ICONS[prod.cat.slug] || ICON_DEFAULT;
+    document.getElementById('detail-img').innerHTML = icon;
+    document.getElementById('detail-cat').textContent = prod.cat.label;
+    document.getElementById('detail-code').textContent = prod.codigo;
+    document.getElementById('detail-title').textContent = prod.descripcion;
+    document.getElementById('detail-breadcrumb-text').textContent = prod.codigo;
+    document.getElementById('pageTitle').textContent = prod.codigo + ' \u2013 ' + prod.descripcion + ' | BGM Diesel';
+
+    var waMsg = encodeURIComponent('Hola, quisiera consultar stock del repuesto ' + prod.codigo + ' \u2013 ' + prod.descripcion);
+    document.getElementById('detail-wa').href = 'https://api.whatsapp.com/send?phone=5493415317707&text=' + waMsg;
+
+    var addBtn = document.getElementById('detail-add-cart');
+    addBtn.onclick = function() {
+      cartAdd(prod.codigo, prod.descripcion);
+      syncDetailCartBtn();
+    };
+    syncDetailCartBtn();
+
+    document.getElementById('detail-back-btn').onclick = function() {
+      history.pushState(null, '', 'catalogo.html');
+      showGrid();
+    };
+
+    viewGrid.style.display   = 'none';
+    catHero.style.display    = 'none';
+    viewDetail.style.display = 'block';
+  }
+
+  function showGrid() {
+    detailProd = null;
+    viewGrid.style.display   = '';
+    catHero.style.display    = '';
+    viewDetail.style.display = 'none';
+    document.getElementById('pageTitle').textContent = 'Cat\u00e1logo de Repuestos \u2013 BGM Diesel Rosario';
+  }
+
+  // ── routing ─────────────────────────────────────────────────────────────────
+  function route() {
+    var params = new URLSearchParams(window.location.search);
+    var p = params.get('p');
+    if (p) showDetail(decodeURIComponent(p));
+    else showGrid();
+  }
+
+  window.addEventListener('popstate', route);
+
+  // ── exponer CART globalmente (para onclick inline en cards) ─────────────────
+  window.CART = { add: cartAdd };
+
+  // ── init ────────────────────────────────────────────────────────────────────
+  cartLoad();
+  buildRows();
+  filtered = allRows.slice();
+  renderFilterBar();
+  applyFilter();
+  route();
+  cartRenderBadge();
+  cartRenderDrawer();
+
+  searchEl.addEventListener('input', applyFilter);
+
+  // ── eventos carrito ─────────────────────────────────────────────────────────
+  document.getElementById('cartFloatBtn').addEventListener('click', cartOpen);
+  document.getElementById('cartClose').addEventListener('click', cartClose);
+  document.getElementById('cartOverlay').addEventListener('click', cartClose);
+  document.getElementById('btnClearCart').addEventListener('click', function() {
+    if (confirm('¿Vaciar el carrito?')) cartClear();
+  });
+  document.getElementById('btnSendOrder').addEventListener('click', function() {
+    if (!cart.length) return;
+    var msg = cartBuildWaMessage();
+    window.open('https://api.whatsapp.com/send?phone=5493415317707&text=' + encodeURIComponent(msg), '_blank');
+  });
+
+})();
+</script>
+<script>
+  (function() {
+    var btn   = document.getElementById('navHamburger');
+    var links = document.getElementById('navLinks');
+    btn.addEventListener('click', function() {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
   })();
 </script>
 </body>
