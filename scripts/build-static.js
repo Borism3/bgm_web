@@ -368,7 +368,7 @@ function cartScript() {
   }
   function waMsg(){
     var lines=['Hola! Quisiera consultar el siguiente pedido:\\n'];
-    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+(it.qty>1?' (x'+it.qty+')':''));});
+    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+' (cant: '+it.qty+')');});
     lines.push('\\nMuchas gracias.');
     return lines.join('\\n');
   }

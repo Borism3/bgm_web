@@ -181,8 +181,8 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   <aside>
   <div class="aside-box">
     <div class="aside-title">Categorías</div>
-    <ul class="cat-list"><li><a href="/catalogo/" aria-current="page"><span>Todos</span><span class="badge">3974</span></a></li>
-<li><a href="/catalogo/categoria/otros/"><span>Otros</span><span class="badge">2067</span></a></li>
+    <ul class="cat-list"><li><a href="/catalogo/" aria-current="page"><span>Todos</span><span class="badge">3973</span></a></li>
+<li><a href="/catalogo/categoria/otros/"><span>Otros</span><span class="badge">2066</span></a></li>
 <li><a href="/catalogo/categoria/motor/"><span>Motor</span><span class="badge">674</span></a></li>
 <li><a href="/catalogo/categoria/frenos/"><span>Frenos y Suspensión</span><span class="badge">336</span></a></li>
 <li><a href="/catalogo/categoria/refrigeracion/"><span>Refrigeración</span><span class="badge">215</span></a></li>
@@ -198,27 +198,13 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   <main>
     <div class="catalog-header">
       <h1 class="catalog-title">Catálogo de Repuestos para Camiones</h1>
-      <span class="catalog-count">24 de 3974 productos – Página 164</span>
+      <span class="catalog-count">24 de 3973 productos – Página 164</span>
     </div>
     <div class="search-wrap">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="search" id="searchInput" placeholder="Buscar por código o descripción…" aria-label="Buscar productos">
     </div>
     <section class="product-grid" id="productGrid"><article class="product-card">
-  <div class="card-img"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="10" y="10" width="44" height="44" rx="6"/><circle cx="32" cy="32" r="10"/><line x1="32" y1="10" x2="32" y2="22"/><line x1="32" y1="42" x2="32" y2="54"/></svg></div>
-  <div class="card-body">
-    <span class="card-cat">Otros</span>
-    <span class="card-code">MOTIVO</span>
-    <div class="card-desc">ELEMENT</div>
-    <span class="stock-consultar">Consultar stock</span>
-    <div class="card-actions">
-      <a class="card-btn" href="/producto/motivo-element/">Ver detalle</a>
-      <button class="card-btn-cart" data-cart-cod="MOTIVO" data-cart-desc="ELEMENT"
-        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
-    </div>
-  </div>
-</article>
-<article class="product-card">
   <div class="card-img"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="10" y="10" width="44" height="44" rx="6"/><circle cx="32" cy="32" r="10"/><line x1="32" y1="10" x2="32" y2="22"/><line x1="32" y1="42" x2="32" y2="54"/></svg></div>
   <div class="card-body">
     <span class="card-cat">Otros</span>
@@ -539,6 +525,20 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
         onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
     </div>
   </div>
+</article>
+<article class="product-card">
+  <div class="card-img"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="14" cy="14" r="8"/><circle cx="50" cy="14" r="8"/><circle cx="32" cy="50" r="8"/><line x1="22" y1="14" x2="42" y2="14"/><line x1="14" y1="22" x2="32" y2="42"/><line x1="50" y1="22" x2="32" y2="42"/></svg></div>
+  <div class="card-body">
+    <span class="card-cat">Transmisión y Cardan</span>
+    <span class="card-code">S48-03466XL</span>
+    <div class="card-desc">HEMBRA CARDAN 48</div>
+    <span class="stock-consultar">Consultar stock</span>
+    <div class="card-actions">
+      <a class="card-btn" href="/producto/s48-03466xl-hembra-cardan-48/">Ver detalle</a>
+      <button class="card-btn-cart" data-cart-cod="S48-03466XL" data-cart-desc="HEMBRA CARDAN 48"
+        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
+    </div>
+  </div>
 </article></section>
     <div id="noResults" style="display:none;text-align:center;padding:3rem;color:var(--gris);font-size:1rem">No se encontraron productos para tu búsqueda.</div>
     <nav class="pagination" aria-label="Páginas"><a href="/catalogo/pagina/163/" aria-label="Anterior">&#8249;</a><a href="/catalogo/">1</a><a href="/catalogo/pagina/2/">2</a><span>…</span><a href="/catalogo/pagina/162/">162</a><a href="/catalogo/pagina/163/">163</a><em>164</em><a href="/catalogo/pagina/165/">165</a><a href="/catalogo/pagina/166/">166</a><a href="/catalogo/pagina/165/" aria-label="Siguiente">&#8250;</a></nav>
@@ -707,7 +707,7 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   }
   function waMsg(){
     var lines=['Hola! Quisiera consultar el siguiente pedido:\n'];
-    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+(it.qty>1?' (x'+it.qty+')':''));});
+    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+' (cant: '+it.qty+')');});
     lines.push('\nMuchas gracias.');
     return lines.join('\n');
   }

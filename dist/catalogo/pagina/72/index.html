@@ -181,8 +181,8 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   <aside>
   <div class="aside-box">
     <div class="aside-title">Categorías</div>
-    <ul class="cat-list"><li><a href="/catalogo/" aria-current="page"><span>Todos</span><span class="badge">3974</span></a></li>
-<li><a href="/catalogo/categoria/otros/"><span>Otros</span><span class="badge">2067</span></a></li>
+    <ul class="cat-list"><li><a href="/catalogo/" aria-current="page"><span>Todos</span><span class="badge">3973</span></a></li>
+<li><a href="/catalogo/categoria/otros/"><span>Otros</span><span class="badge">2066</span></a></li>
 <li><a href="/catalogo/categoria/motor/"><span>Motor</span><span class="badge">674</span></a></li>
 <li><a href="/catalogo/categoria/frenos/"><span>Frenos y Suspensión</span><span class="badge">336</span></a></li>
 <li><a href="/catalogo/categoria/refrigeracion/"><span>Refrigeración</span><span class="badge">215</span></a></li>
@@ -198,7 +198,7 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   <main>
     <div class="catalog-header">
       <h1 class="catalog-title">Catálogo de Repuestos para Camiones</h1>
-      <span class="catalog-count">24 de 3974 productos – Página 72</span>
+      <span class="catalog-count">24 de 3973 productos – Página 72</span>
     </div>
     <div class="search-wrap">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -707,7 +707,7 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   }
   function waMsg(){
     var lines=['Hola! Quisiera consultar el siguiente pedido:\n'];
-    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+(it.qty>1?' (x'+it.qty+')':''));});
+    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+' (cant: '+it.qty+')');});
     lines.push('\nMuchas gracias.');
     return lines.join('\n');
   }

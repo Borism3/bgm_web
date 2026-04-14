@@ -474,7 +474,7 @@
   function cartBuildWaMessage() {
     var lines = ['Hola! Quisiera consultar el siguiente pedido:\n'];
     cart.forEach(function(item, i) {
-      lines.push((i + 1) + '. [' + item.codigo + '] ' + item.descripcion + (item.qty > 1 ? ' (x' + item.qty + ')' : ''));
+      lines.push((i + 1) + '. [' + item.codigo + '] ' + item.descripcion + ' (cant: ' + item.qty + ')');
     });
     lines.push('\nMuchas gracias.');
     return lines.join('\n');
