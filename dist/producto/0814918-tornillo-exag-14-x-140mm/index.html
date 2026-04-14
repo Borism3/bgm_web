@@ -16,18 +16,19 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"TORNILLO EXAG. 14 X 140mm.","description":"Repuesto para camiones – Código: 0814918. Otros. Disponible en BGM Diesel, Rosario, Argentina.","sku":"0814918","brand":{"@type":"Brand","name":"BGM Diesel"},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","priceCurrency":"ARS","seller":{"@type":"Organization","name":"BGM Diesel"},"url":"https://www.bgmdiesel.com.ar/producto/0814918-tornillo-exag-14-x-140mm/"},"category":"Otros"}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap');
-:root{--navy:#1a3060;--navy2:#253d7a;--rojo:#cc1a1a;--rojo2:#e02020;--cyan:#2ba8d8;--fondo:#f4f7fc;--card:#eaeff8;--texto:#1a3060;--suave:#4a5e7a;--gris:#5a6f85}
+:root{--navy:#1e55b0;--navy2:#2a6ad4;--rojo:#cc1a1a;--rojo2:#e02020;--cyan:#2ba8d8;--fondo:#f4f7fc;--card:#eaeff8;--texto:#1e55b0;--suave:#4a5e7a;--gris:#5a6f85}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;background:var(--fondo);color:var(--texto)}
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;box-shadow:0 2px 16px rgba(26,48,96,.3)}
-.nav-logo img{height:44px;background:#fff;border-radius:4px;padding:3px 7px}
-.nav-links{display:flex;gap:1.8rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;transition:color .2s}
+body>nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;box-shadow:0 2px 20px rgba(26,48,96,.35)}
+.nav-logo-link{display:flex;align-items:center;text-decoration:none}
+.nav-logo-img{height:52px;width:auto;background:#fff;border-radius:5px;padding:4px 8px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover,.nav-links a[aria-current]{color:#fff}
-.nav-wa{background:var(--rojo);color:#fff;padding:.55rem 1.1rem;border-radius:4px;text-decoration:none;font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;white-space:nowrap}
-.nav-wa:hover{background:var(--rojo2)}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:1.6rem;min-width:44px;min-height:44px;align-items:center;justify-content:center;padding:0;line-height:1}
 /* BREADCRUMB */
+body{padding-top:72px}
 .breadcrumb{background:var(--navy);padding:.6rem 5vw;font-size:.8rem;color:rgba(255,255,255,.6)}
 .breadcrumb a{color:var(--cyan);text-decoration:none}.breadcrumb a:hover{text-decoration:underline}
 .breadcrumb span{margin:0 .4rem}
@@ -64,6 +65,7 @@ main{flex:1;min-width:0}
 .card-desc{font-size:.86rem;font-weight:600;color:var(--navy);flex:1;line-height:1.3;margin-top:.1rem}
 .stock-in{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:20px;background:#e6f4ea;color:#1e7e34;font-weight:600}
 .stock-out{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:20px;background:#fef0f0;color:#cc1a1a;font-weight:600}
+.stock-consultar{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:20px;background:#eef3fb;color:var(--navy);font-weight:600}
 .card-btn{display:block;margin-top:.8rem;text-align:center;background:var(--navy);color:#fff;text-decoration:none;padding:.55rem;border-radius:5px;font-size:.8rem;font-weight:700;letter-spacing:.05em;transition:background .2s}
 .card-btn:hover{background:var(--rojo)}
 .card-hidden{display:none!important}
@@ -89,6 +91,7 @@ h1.detail-title{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-
 .btn-wa:hover{background:#1da851}
 .btn-cat{display:inline-flex;align-items:center;gap:.5rem;background:var(--fondo);color:var(--navy);padding:.75rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.88rem;border:1.5px solid #d0d9e8;transition:background .2s}
 .btn-cat:hover{background:var(--card)}
+.detail-desc{font-size:.92rem;color:var(--suave);background:var(--fondo);border-left:3px solid var(--cyan);padding:.7rem 1rem;border-radius:0 4px 4px 0;margin-bottom:1rem;line-height:1.6}
 .detail-meta{margin-top:1.5rem;padding-top:1.5rem;border-top:1.5px solid var(--fondo);font-size:.83rem;color:var(--gris);line-height:1.8}
 .detail-meta strong{color:var(--suave)}
 /* FOOTER */
@@ -97,24 +100,81 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;letter-spacing:.06em}
 /* RESPONSIVE */
 @media(max-width:860px){
-  .page-wrap{flex-direction:column}
-  aside{width:100%;position:static}
+  .page-wrap{flex-direction:column;gap:1rem}
   .detail-card{flex-direction:column}
   .detail-img{width:100%;height:150px}
-  nav .nav-links{display:none}
+  body>nav .nav-hamburger{display:flex}
+  body>nav .nav-links{display:none}
+  body>nav .nav-links.open{display:flex;flex-direction:column;position:fixed;top:72px;left:0;width:100%;background:var(--navy);padding:1rem 5vw 1.5rem;gap:0;border-bottom:3px solid var(--cyan);z-index:99}
+  body>nav .nav-links.open a{padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  /* sidebar → chips horizontales */
+  aside{width:100%;position:static}
+  .aside-box{padding:.8rem;margin-bottom:.5rem}
+  .aside-title{display:none}
+  .cat-list{display:flex;overflow-x:auto;gap:.4rem;padding-bottom:.3rem;scrollbar-width:none}
+  .cat-list::-webkit-scrollbar{display:none}
+  .cat-list li{flex-shrink:0}
+  .cat-list li a{display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .75rem;background:var(--fondo);border:1.5px solid #d0d9e8;border-radius:20px;white-space:nowrap;font-size:.78rem;font-weight:600;color:var(--suave)}
+  .cat-list li a:hover,.cat-list li a[aria-current]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .cat-list li a[aria-current] .badge{background:rgba(255,255,255,.25)}
+  .badge{font-size:.65rem;padding:1px 5px}
 }
+/* CARRITO FLOTANTE */
+.cart-float{position:fixed;bottom:100px;right:28px;z-index:200;background:var(--navy);color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,48,96,.4);transition:transform .2s}
+.cart-float:hover{transform:scale(1.1)}
+.cart-float svg{width:26px;height:26px;flex-shrink:0}
+.cart-float-badge{position:absolute;top:2px;right:2px;background:var(--rojo);color:#fff;font-size:.6rem;font-weight:800;min-width:18px;height:18px;border-radius:9px;padding:0 3px;display:none;align-items:center;justify-content:center;line-height:1}
+.cart-float-badge.visible{display:flex}
+.cart-toast{position:fixed;bottom:104px;right:100px;background:#1a7a3c;color:#fff;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;font-weight:600;z-index:500;opacity:0;transform:translateY(8px);transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.22)}
+.cart-toast.show{opacity:1;transform:translateY(0)}
+.card-actions{display:flex;gap:.5rem;margin-top:.8rem}
+.card-btn-cart{flex:1;background:var(--rojo);color:#fff;border:none;padding:.5rem .4rem;border-radius:5px;font-size:.78rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:inherit}
+.card-btn-cart:hover{background:#e02020}
+.card-btn-cart.en-carrito{background:#1a7a3c}
+.card-btn-cart.en-carrito:hover{background:#145e2e}
+.btn-add-cart{display:inline-flex;align-items:center;gap:.6rem;background:var(--navy);color:#fff;padding:.85rem 1.6rem;border-radius:6px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;transition:background .2s;font-family:inherit}
+.btn-add-cart:hover{background:var(--rojo)}
+.btn-add-cart.en-carrito{background:#1a7a3c}
+.btn-add-cart.en-carrito:hover{background:#145e2e}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;opacity:0;pointer-events:none;transition:opacity .25s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;width:380px;max-width:100vw;height:100vh;background:#fff;z-index:400;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-4px 0 32px rgba(26,48,96,.18)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{background:var(--navy);color:#fff;padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:3px solid var(--cyan)}
+.cart-header h2{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.cart-close{background:none;border:none;color:rgba(255,255,255,.75);cursor:pointer;font-size:1.4rem;line-height:1;padding:.2rem;transition:color .15s}
+.cart-close:hover{color:#fff}
+.cart-items{flex:1;overflow-y:auto;padding:.5rem 1.2rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--gris);font-size:.9rem;line-height:1.7}
+.cart-item{display:flex;align-items:center;gap:.8rem;padding:.85rem 0;border-bottom:1px solid #f0f3f8}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-code{font-size:.7rem;color:var(--gris);font-family:monospace;font-weight:700;text-transform:uppercase}
+.cart-item-desc{font-size:.83rem;font-weight:600;color:var(--navy);line-height:1.3;margin-top:.15rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.cart-item-qty{display:flex;align-items:center;gap:.3rem;flex-shrink:0}
+.qty-btn{background:var(--fondo);border:1px solid #d0d9e8;color:var(--navy);width:26px;height:26px;border-radius:4px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.qty-btn:hover{background:var(--card)}
+.qty-val{font-size:.85rem;font-weight:700;min-width:22px;text-align:center}
+.cart-item-remove{background:none;border:none;color:#ccc;cursor:pointer;font-size:1rem;padding:.2rem .3rem;transition:color .15s;flex-shrink:0}
+.cart-item-remove:hover{color:var(--rojo)}
+.cart-footer{padding:1.1rem 1.2rem;border-top:2px solid #f0f3f8;flex-shrink:0;display:flex;flex-direction:column;gap:.6rem}
+.cart-summary{font-size:.82rem;color:var(--gris);text-align:center}
+.btn-send-order{display:flex;align-items:center;justify-content:center;gap:.6rem;background:#25d366;color:#fff;border:none;padding:.9rem;border-radius:6px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s;font-family:inherit;width:100%}
+.btn-send-order:hover{background:#1da851}
+.btn-clear-cart{background:none;border:1.5px solid #d0d9e8;color:var(--gris);padding:.55rem;border-radius:5px;font-size:.78rem;cursor:pointer;width:100%;transition:all .15s;font-family:inherit}
+.btn-clear-cart:hover{border-color:var(--rojo);color:var(--rojo)}
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="/"><img src="/img/logo.jpg" alt="BGM Diesel" width="160" height="52"></a>
-  <ul class="nav-links">
-    <li><a href="/">Inicio</a></li>
-    <li><a href="/catalogo/" aria-current="page">Catálogo</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/#empresa">Empresa</a></li>
     <li><a href="/#marcas">Marcas</a></li>
+    <li><a href="/#productos">Productos</a></li>
+    <li><a href="/catalogo/" aria-current="page">Catálogo</a></li>
     <li><a href="/#contacto">Contacto</a></li>
-    <li><a class="nav-wa" href="https://wa.me/5493415317707?text=Hola%2C+quiero+consultar+sobre+un+repuesto">WhatsApp</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+  <a href="/" class="nav-logo-link"><img src="/img/logo.jpg" alt="BGM Diesel – Repuestos para Camiones" class="nav-logo-img" width="160" height="52"></a>
 </nav>
 <nav class="breadcrumb">
   <a href="/">Inicio</a><span>›</span>
@@ -129,8 +189,10 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
       <a class="detail-cat-link" href="/catalogo/categoria/otros/">Otros</a>
       <div class="detail-code">Código: 0814918</div>
       <h1 class="detail-title">TORNILLO EXAG. 14 X 140mm.</h1>
-      <div class="detail-stock"><span class="stock-in">En stock (3 unidades)</span></div>
+      <div class="detail-desc">Tornillo exagonal M14x140mm de alta resistencia para fijaciones estructurales y de motor en vehículos pesados. Disponible en BGM Diesel, Rosario.</div>
+      <div class="detail-stock"><span class="stock-consultar">Consultar stock</span></div>
       <div class="detail-btns">
+        <button class="btn-add-cart" id="btnAddCart" data-cart-cod="0814918" data-cart-desc="TORNILLO EXAG. 14 X 140mm.">+ Agregar al carrito</button>
         <a class="btn-wa" href="https://wa.me/5493415317707?text=Hola%20BGM%20Diesel%2C%20quiero%20consultar%20sobre%3A%200814918%20%E2%80%93%20TORNILLO%20EXAG.%2014%20X%20140mm." target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.534 5.845L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.376l-.36-.214-3.73.889.928-3.628-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
           Consultar por WhatsApp
@@ -142,7 +204,7 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
       <div class="detail-meta">
         <strong>Código:</strong> 0814918<br>
         <strong>Categoría:</strong> Otros<br>
-        <strong>Disponibilidad:</strong> 3 unidades en stock<br>
+        <strong>Disponibilidad:</strong> Consultar stock<br>
         <strong>Zona de cobertura:</strong> Todo Argentina · Envíos desde Rosario, Santa Fe
       </div>
     </div>
@@ -155,8 +217,12 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
     <span class="card-cat">Otros</span>
     <span class="card-code">0014698/F</span>
     <div class="card-desc">RODAMIENTO RUEDA DEL. 111/P93 (CHICO) F</div>
-    <span class="stock-in">En stock (9)</span>
-    <a class="card-btn" href="/producto/0014698-f-rodamiento-rueda-del-111-p93-chico-f/">Ver detalle</a>
+    <span class="stock-consultar">Consultar stock</span>
+    <div class="card-actions">
+      <a class="card-btn" href="/producto/0014698-f-rodamiento-rueda-del-111-p93-chico-f/">Ver detalle</a>
+      <button class="card-btn-cart" data-cart-cod="0014698/F" data-cart-desc="RODAMIENTO RUEDA DEL. 111/P93 (CHICO) F"
+        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
+    </div>
   </div>
 </article>
 <article class="product-card">
@@ -165,8 +231,12 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
     <span class="card-cat">Otros</span>
     <span class="card-code">0014835/F</span>
     <div class="card-desc">RODAMIENTO RUEDA TRASERA SC ARTILLERO F</div>
-    <span class="stock-in">En stock (7)</span>
-    <a class="card-btn" href="/producto/0014835-f-rodamiento-rueda-trasera-sc-artillero-f/">Ver detalle</a>
+    <span class="stock-consultar">Consultar stock</span>
+    <div class="card-actions">
+      <a class="card-btn" href="/producto/0014835-f-rodamiento-rueda-trasera-sc-artillero-f/">Ver detalle</a>
+      <button class="card-btn-cart" data-cart-cod="0014835/F" data-cart-desc="RODAMIENTO RUEDA TRASERA SC ARTILLERO F"
+        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
+    </div>
   </div>
 </article>
 <article class="product-card">
@@ -175,8 +245,12 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
     <span class="card-cat">Otros</span>
     <span class="card-code">0014836</span>
     <div class="card-desc">RODAMIENTO RUEDA DEL. S3 (INT.-GRANDE)</div>
-    <span class="stock-in">En stock (5)</span>
-    <a class="card-btn" href="/producto/0014836-rodamiento-rueda-del-s3-int-grande/">Ver detalle</a>
+    <span class="stock-consultar">Consultar stock</span>
+    <div class="card-actions">
+      <a class="card-btn" href="/producto/0014836-rodamiento-rueda-del-s3-int-grande/">Ver detalle</a>
+      <button class="card-btn-cart" data-cart-cod="0014836" data-cart-desc="RODAMIENTO RUEDA DEL. S3 (INT.-GRANDE)"
+        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
+    </div>
   </div>
 </article>
 <article class="product-card">
@@ -185,8 +259,12 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
     <span class="card-cat">Otros</span>
     <span class="card-code">0014836/F</span>
     <div class="card-desc">RODAMIENTO RUEDA DEL. S3 (INT.-GRANDE) F</div>
-    <span class="stock-in">En stock (10)</span>
-    <a class="card-btn" href="/producto/0014836-f-rodamiento-rueda-del-s3-int-grande-f/">Ver detalle</a>
+    <span class="stock-consultar">Consultar stock</span>
+    <div class="card-actions">
+      <a class="card-btn" href="/producto/0014836-f-rodamiento-rueda-del-s3-int-grande-f/">Ver detalle</a>
+      <button class="card-btn-cart" data-cart-cod="0014836/F" data-cart-desc="RODAMIENTO RUEDA DEL. S3 (INT.-GRANDE) F"
+        onclick="event.preventDefault();event.stopPropagation();window.CART.add(this.dataset.cartCod,this.dataset.cartDesc)">+ Carrito</button>
+    </div>
   </div>
 </article></div>
 </div>
@@ -198,5 +276,142 @@ footer strong{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1
   · <a href="/catalogo/">Catálogo</a>
   · <a href="https://www.instagram.com/bgmdiesel/" rel="noopener">Instagram</a>
 </footer>
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Carrito de pedido">
+  <div class="cart-header">
+    <h2>Carrito de pedido</h2>
+    <button class="cart-close" id="cartClose" aria-label="Cerrar">&#10005;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-summary" id="cartSummary"></div>
+    <button class="btn-send-order" id="btnSendOrder"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.534 5.845L0 24l6.335-1.51A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.376l-.36-.214-3.73.889.928-3.628-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg> Enviar pedido por WhatsApp</button>
+    <button class="btn-clear-cart" id="btnClearCart">Vaciar carrito</button>
+  </div>
+</div>
+<button class="cart-float" id="cartFloatBtn" aria-label="Ver carrito">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+  <span class="cart-float-badge" id="cartBadge"></span>
+</button>
+<div class="cart-toast" id="cartToast"></div>
+<script>
+(function(){
+  var WA='5493415317707';
+  var KEY='bgm_carrito';
+  var cart=[];
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function load(){try{cart=JSON.parse(localStorage.getItem(KEY))||[];}catch(e){cart=[];}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(cart));}catch(e){}}
+  function find(cod){for(var i=0;i<cart.length;i++)if(cart[i].codigo===cod)return i;return -1;}
+  function total(){return cart.reduce(function(s,i){return s+i.qty;},0);}
+
+  function add(cod,desc){
+    var idx=find(cod);
+    if(idx>=0){cart[idx].qty+=1;toast('\u2713 Cantidad actualizada');}
+    else{cart.push({codigo:cod,descripcion:desc,qty:1});toast('\u2713 Agregado al carrito');}
+    save();badge();drawer();syncBtns();
+  }
+  function remove(cod){var idx=find(cod);if(idx>=0)cart.splice(idx,1);save();badge();drawer();syncBtns();}
+  function setQty(cod,qty){var idx=find(cod);if(idx<0)return;if(qty<1){remove(cod);return;}cart[idx].qty=qty;save();badge();drawer();}
+  function clear(){cart=[];save();badge();drawer();syncBtns();}
+
+  function badge(){
+    var t=total();var el=document.getElementById('cartBadge');if(!el)return;
+    el.textContent=t>99?'99+':t;el.classList.toggle('visible',t>0);
+  }
+  var tt=null;
+  function toast(msg){
+    var el=document.getElementById('cartToast');if(!el)return;
+    clearTimeout(tt);el.textContent=msg;el.classList.add('show');
+    tt=setTimeout(function(){el.classList.remove('show');},2400);
+  }
+  function drawer(){
+    var items=document.getElementById('cartItems');
+    var footer=document.getElementById('cartFooter');
+    var summary=document.getElementById('cartSummary');
+    if(!items)return;
+    if(!cart.length){
+      items.innerHTML='<div class="cart-empty">Tu carrito est\u00e1 vac\u00edo.<br>Agrega repuestos desde el cat\u00e1logo.</div>';
+      footer.style.display='none';return;
+    }
+    var h='';
+    cart.forEach(function(it){
+      h+='<div class="cart-item">'+
+        '<div class="cart-item-info">'+
+          '<div class="cart-item-code">'+esc(it.codigo)+'</div>'+
+          '<div class="cart-item-desc">'+esc(it.descripcion)+'</div>'+
+        '</div>'+
+        '<div class="cart-item-qty">'+
+          '<button class="qty-btn" data-action="dec" data-cod="'+esc(it.codigo)+'">&#8722;</button>'+
+          '<span class="qty-val">'+it.qty+'</span>'+
+          '<button class="qty-btn" data-action="inc" data-cod="'+esc(it.codigo)+'">&#43;</button>'+
+        '</div>'+
+        '<button class="cart-item-remove" data-action="remove" data-cod="'+esc(it.codigo)+'" title="Quitar">&#10005;</button>'+
+      '</div>';
+    });
+    items.innerHTML=h;
+    var t=total();
+    summary.textContent=t+' art\u00edculo'+(t!==1?'s':'')+' en el pedido';
+    footer.style.display='';
+    items.querySelectorAll('[data-action]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var cod=btn.dataset.cod,action=btn.dataset.action,idx=find(cod);
+        if(idx<0)return;
+        if(action==='inc')setQty(cod,cart[idx].qty+1);
+        else if(action==='dec')setQty(cod,cart[idx].qty-1);
+        else if(action==='remove')remove(cod);
+      });
+    });
+  }
+  function waMsg(){
+    var lines=['Hola! Quisiera consultar el siguiente pedido:\n'];
+    cart.forEach(function(it,i){lines.push((i+1)+'. ['+it.codigo+'] '+it.descripcion+(it.qty>1?' (x'+it.qty+')':''));});
+    lines.push('\nMuchas gracias.');
+    return lines.join('\n');
+  }
+  function open(){document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('open');document.body.style.overflow='hidden';}
+  function close(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');document.body.style.overflow='';}
+
+  function syncBtns(){
+    document.querySelectorAll('[data-cart-cod]').forEach(function(btn){
+      var inCart=find(btn.dataset.cartCod)>=0;
+      btn.textContent=inCart?'\u2713 En carrito':'+ Carrito';
+      btn.classList.toggle('en-carrito',inCart);
+    });
+    var addBtn=document.getElementById('btnAddCart');
+    if(addBtn){
+      var inCart=find(addBtn.dataset.cartCod)>=0;
+      addBtn.textContent=inCart?'\u2713 Agregado al carrito':'+ Agregar al carrito';
+      addBtn.classList.toggle('en-carrito',inCart);
+    }
+  }
+
+  window.CART={add:add,syncBtns:syncBtns};
+  load();badge();drawer();syncBtns();
+  document.getElementById('cartFloatBtn').addEventListener('click',open);
+  document.getElementById('cartClose').addEventListener('click',close);
+  document.getElementById('cartOverlay').addEventListener('click',close);
+  document.getElementById('btnClearCart').addEventListener('click',function(){if(confirm('\u00bfVaciar el carrito?'))clear();});
+  document.getElementById('btnSendOrder').addEventListener('click',function(){
+    if(!cart.length)return;
+    window.open('https://api.whatsapp.com/send?phone='+WA+'&text='+encodeURIComponent(waMsg()),'_blank');
+  });
+  var addBtn=document.getElementById('btnAddCart');
+  if(addBtn){
+    addBtn.addEventListener('click',function(){
+      add(addBtn.dataset.cartCod,addBtn.dataset.cartDesc);
+    });
+  }
+  // hamburger
+  var ham=document.getElementById('navHamburger');
+  var navL=document.getElementById('navLinks');
+  if(ham&&navL){
+    ham.addEventListener('click',function(){
+      var open=navL.classList.toggle('open');
+      ham.setAttribute('aria-expanded',open);
+    });
+  }
+})();
+</script>
 </body>
 </html>
