@@ -5,8 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="pageTitle">Catálogo de Repuestos – BGM Diesel Rosario</title>
   <meta name="description" content="Catálogo de repuestos para camiones en Rosario. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo. Consultá stock al instante por WhatsApp. BGM Diesel." />
+  <meta property="og:title" content="Catálogo de Repuestos – BGM Diesel Rosario" />
+  <meta property="og:description" content="Catálogo de repuestos para camiones en Rosario. Mercedes Benz, Scania, Volvo, Cummins, Ford Cargo. Consultá stock al instante por WhatsApp. BGM Diesel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.bgmdiesel.com.ar/catalogo/" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:image" content="https://www.bgmdiesel.com.ar/img/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.bgmdiesel.com.ar/img/og-home.jpg" />
   <link rel="canonical" href="https://www.bgmdiesel.com.ar/catalogo/" />
   <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://www.bgmdiesel.com.ar/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Catálogo de Repuestos",
+        "item": "https://www.bgmdiesel.com.ar/catalogo/"
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -197,6 +228,25 @@
     .btn-send-order svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
     .btn-clear-cart { background: none; border: 1.5px solid #d0d9e8; color: var(--gris); padding: 0.55rem; border-radius: 5px; font-size: 0.78rem; cursor: pointer; width: 100%; transition: all 0.15s; font-family: 'Barlow', sans-serif; }
     .btn-clear-cart:hover { border-color: var(--rojo); color: var(--rojo); }
+
+    /* ANIMACIÓN VACIADO */
+    @keyframes item-fly-out {
+      0%   { transform: translateX(0);    opacity: 1;   max-height: 80px;  padding-top: 0.85rem; padding-bottom: 0.85rem; }
+      35%  { transform: translateX(30px); opacity: 0.7; }
+      100% { transform: translateX(140%); opacity: 0;   max-height: 0;     padding-top: 0;       padding-bottom: 0; border-bottom-width: 0; }
+    }
+    .cart-item.fly-out {
+      animation: item-fly-out 0.34s ease-in forwards;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    @keyframes cart-btn-pop {
+      0%, 100% { transform: scale(1)    rotate(0deg); }
+      20%      { transform: scale(0.82) rotate(-14deg); }
+      55%      { transform: scale(1.22) rotate(10deg); }
+      78%      { transform: scale(0.94) rotate(-5deg); }
+    }
+    .cart-float.pop-anim { animation: cart-btn-pop 0.48s cubic-bezier(.36,.07,.19,.97); }
   </style>
 </head>
 <body>
@@ -400,6 +450,25 @@
     cartRenderDrawer();
     renderPage();
     syncDetailCartBtn();
+  }
+
+  function cartClearAnimated() {
+    var items = document.querySelectorAll('#cartItems .cart-item');
+    var count = items.length;
+    if (!count) { cartClear(); return; }
+    items.forEach(function(el, i) {
+      el.style.animationDelay = (i * 55) + 'ms';
+      el.classList.add('fly-out');
+    });
+    setTimeout(function() {
+      cartClear();
+      var btn = document.getElementById('cartFloatBtn');
+      btn.classList.add('pop-anim');
+      btn.addEventListener('animationend', function handler() {
+        btn.classList.remove('pop-anim');
+        btn.removeEventListener('animationend', handler);
+      });
+    }, count * 55 + 360);
   }
 
   function cartTotal() {
@@ -708,7 +777,8 @@
   document.getElementById('cartClose').addEventListener('click', cartClose);
   document.getElementById('cartOverlay').addEventListener('click', cartClose);
   document.getElementById('btnClearCart').addEventListener('click', function() {
-    if (confirm('¿Vaciar el carrito?')) cartClear();
+    if (!cart.length) return;
+    if (confirm('¿Vaciar el carrito?')) cartClearAnimated();
   });
   document.getElementById('btnSendOrder').addEventListener('click', function() {
     if (!cart.length) return;
