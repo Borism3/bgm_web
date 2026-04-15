@@ -13,14 +13,6 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.bgmdiesel.com.ar/catalogo/">
 <meta property="og:locale" content="es_AR">
-<meta property="og:image" content="https://www.bgmdiesel.com.ar/img/og-home.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.bgmdiesel.com.ar/img/og-home.jpg">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.bgmdiesel.com.ar/"},{"@type":"ListItem","position":2,"name":"Catálogo de Repuestos","item":"https://www.bgmdiesel.com.ar/catalogo/"}]}
-</script>
 <link rel="icon" type="image/jpeg" href="/img/logo.jpg">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap');
@@ -28,7 +20,7 @@
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;background:var(--fondo);color:var(--texto)}
 /* NAV */
-body>nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;box-shadow:0 2px 20px rgba(26,48,96,.35)}
+body>nav:not(.breadcrumb){position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;box-shadow:0 2px 20px rgba(26,48,96,.35)}
 .nav-logo-link{display:flex;align-items:center;text-decoration:none}
 .nav-logo-img{height:52px;width:auto;background:#fff;border-radius:5px;padding:4px 8px}
 .nav-links{display:flex;gap:2rem;list-style:none}

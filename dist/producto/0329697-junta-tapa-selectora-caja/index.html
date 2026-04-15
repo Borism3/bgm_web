@@ -20,7 +20,7 @@
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;background:var(--fondo);color:var(--texto)}
 /* NAV */
-body>nav{position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;box-shadow:0 2px 20px rgba(26,48,96,.35)}
+body>nav:not(.breadcrumb){position:fixed;top:0;width:100%;z-index:100;background:var(--navy);border-bottom:3px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;box-shadow:0 2px 20px rgba(26,48,96,.35)}
 .nav-logo-link{display:flex;align-items:center;text-decoration:none}
 .nav-logo-img{height:52px;width:auto;background:#fff;border-radius:5px;padding:4px 8px}
 .nav-links{display:flex;gap:2rem;list-style:none}
